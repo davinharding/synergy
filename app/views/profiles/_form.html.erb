@@ -1,0 +1,33 @@
+  <div class="container">
+  <%= form_with(model: @profile, local:true) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= select("activity", "activity_id", @activities.map{|a| [ a.activity, a.id ] }, {}) %>
+  </div>
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.text_field :age %>
+  </div>
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+  <div class="field">
+    <%= form.label :picture %>
+    <%= form.text_field :picture %>
+  </div>
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_field :bio %>
+  </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= submit_tag("Submit") %>
+  <% end %>
+</div>
