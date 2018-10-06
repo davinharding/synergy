@@ -19,19 +19,31 @@ class ProfilesController < ApplicationController
   def edit 
     @profile = current_user.profile
     @activities = Activity.all 
+    @user_activities = current_user.activities
     # redirect_to profiles_path
   end
 
   def update 
     @profile = Profile.find(params[:id])
     @profile.update(profile_params)
+    
+
+    Activity.all.each do |activity|
+      id = activity.id.to_s
+      if params[:activity].include?(id) && !current_user.activities.include?(activity) 
+        current_user.activities << Activity.find(id)
+      elsif current_user.activities.include?(activity) && !params[:activity].include?(id)
+        current_user.activities.delete(activity)
+      end
+    end
+
     redirect_to profiles_path
   end 
 
   private 
 
   def profile_params
-    params.require(:profile).permit(:name, :age, :location, :picture, :gender, :bio, :activity, :user_id)
+    params.require(:profile).permit(:name, :age, :location, :picture, :activity, :gender, :bio, :user_id)
   end
 
 end

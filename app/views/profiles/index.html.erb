@@ -1,14 +1,14 @@
-<h1>Profiles</h1>
-
 <% @profiles.each do |profile|%>
-  <ul class="list-group">
-    <li class="list-group-item"><%= profile.name %></li>
-    <li class="list-group-item"><%=profile.age %></li>
-    <li class="list-group-item"><%= profile.location %></li>
-    <% if profile.picture != ""%>
-      <li class="list-group-item"><%= profile.picture %></li> 
-    <% end %>
-    <li class="list-group-item"> <%= profile.gender %></li>
-    <li class="list-group-item"><%= profile.bio %></li>
-  </ul>
+  <div class="card" stlye="margin-bottom: 10px;">
+    <ul class="list-group">
+      <li class="list-group-item"><%= profile.name %></li>
+      <li class="list-group-item"><%=profile.age %></li>
+      <li class="list-group-item"><%= profile.location %></li>
+      <% if profile.picture != ""%>
+        <li class="list-group-item"><%= profile.picture %></li> 
+      <% end %>
+      <li class="list-group-item"> <%= profile.gender %></li>
+      <li class="list-group-item"><%= profile.bio %></li>
+    </ul>
+  </div>
 <% end %>
