@@ -7,10 +7,14 @@
   <div>
   <ul>
     <% @activities.each do |activity| %>
-    <li>
-      <%= check_box_tag('activity[]', activity.id, checked = false) %>
+      <li>
+      <% if @user_activities.include?(activity)%>
+          <%= check_box_tag( "activity[]", activity.id, checked = true) %>         
+      <% else %>
+          <%= check_box_tag( "activity[]", activity.id, checked = false) %>
+      <%end%>
       <%= activity.activity %>
-    </li>
+      </li>
     <% end %>
     </ul>
   </div>
