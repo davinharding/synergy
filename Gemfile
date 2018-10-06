@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'hirb'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem "react_on_rails"
 gem 'devise'

@@ -17,7 +17,7 @@
 end
 
 [
-  "andy@gmail",
+  "andy@gmail.com",
   "davin@gmail.com",
   "rumen@gmail.com"
 ].each do |email|

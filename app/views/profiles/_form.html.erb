@@ -1,29 +1,36 @@
   <div class="container">
   <%= form_with(model: @profile, local:true) do |form| %>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
   <div>
-    <%= select("activity", "activity_id", @activities.map{|a| [ a.activity, a.id ] }, {}) %>
+  <ul>
+    <% @activities.each do |activity| %>
+    <li>
+      <%= check_box_tag('activity[]', activity.id, checked = false) %>
+      <%= activity.activity %>
+    </li>
+    <% end %>
+    </ul>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :age %>
     <%= form.text_field :age %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :location %>
     <%= form.text_field :location %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :picture %>
     <%= form.text_field :picture %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :gender %>
     <%= form.text_field :gender %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label :bio %>
     <%= form.text_field :bio %>
   </div>
