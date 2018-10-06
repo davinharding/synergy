@@ -19,9 +19,13 @@ class ProfilesController < ApplicationController
   def edit 
     @profile = current_user.profile
     @activities = Activity.all 
+    # redirect_to profiles_path
   end
 
   def update 
+    @profile = Profile.find(params[:id])
+    @profile.update(profile_params)
+    redirect_to profiles_path
   end 
 
   private 

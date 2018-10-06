@@ -22,3 +22,7 @@
     height: 100vh;
     margin-left: 10% ;
 } */
+
+ul {
+  list-style-type: none;
+  }
