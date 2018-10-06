@@ -30,9 +30,9 @@ class ProfilesController < ApplicationController
 
     Activity.all.each do |activity|
       id = activity.id.to_s
-      if params[:activity].include?(id) && !current_user.activities.include?(activity) 
+      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity) 
         current_user.activities << Activity.find(id)
-      elsif current_user.activities.include?(activity) && !params[:activity].include?(id)
+      elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
         current_user.activities.delete(activity)
       end
     end
