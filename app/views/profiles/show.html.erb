@@ -1,0 +1,14 @@
+  <div class="card" >
+    <ul class="list-group">
+      <% if @profile.image != ""%>
+        <li class="list-group-item">
+          <%= image_tag @profile.image.url(:thumb) %>
+        </li> 
+      <% end %>
+      <li class="list-group-item"><%= @profile.name %></li>
+      <li class="list-group-item"><%= @profile.age %></li>
+      <li class="list-group-item"><%= @profile.location %></li>
+      <li class="list-group-item"> <%= @profile.gender %></li>
+      <li class="list-group-item"><%= @profile.bio %></li>
+    </ul>
+  </div>
