@@ -8,11 +8,11 @@
   <ul>
     <% @activities.each do |activity| %>
       <li>
-      <% if @user_activities.include?(activity)%>
+        <% if @user_activities.include?(activity)%>
           <%= check_box_tag( "activity[]", activity.id, checked = true) %>         
-      <% else %>
+        <% else %>
           <%= check_box_tag( "activity[]", activity.id, checked = false) %>
-      <%end%>
+        <% end %>
       <%= activity.activity %>
       </li>
     <% end %>
