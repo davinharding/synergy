@@ -5,7 +5,11 @@
       <li class="list-group-item"><%=profile.age %></li>
       <li class="list-group-item"><%= profile.location %></li>
       <% if profile.picture != ""%>
-        <li class="list-group-item"><%= profile.picture %></li> 
+        <li class="list-group-item">
+          <%= form_for profile, :url => profile_path, :html => { :multipart => true } do |form| %>
+            <%= form.file_field :avatar %>
+          <% end %>
+        </li> 
       <% end %>
       <li class="list-group-item"> <%= profile.gender %></li>
       <li class="list-group-item"><%= profile.bio %></li>
