@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
   def new 
     @profile = Profile.new
     @activities = Activity.all 
+    @user_activities = current_user.activities
   end 
 
   def create 
