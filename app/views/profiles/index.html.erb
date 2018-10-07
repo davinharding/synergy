@@ -1,14 +1,14 @@
 <% @profiles.each do |profile|%>
-  <div class="card" stlye="margin-bottom: 10px;">
+  <div class="card" >
     <ul class="list-group">
+      <% if profile.image != ""%>
+        <li class="list-group-item">
+          <%= image_tag profile.image.url(:thumb) %>
+        </li> 
+      <% end %>
       <li class="list-group-item"><%= profile.name %></li>
       <li class="list-group-item"><%=profile.age %></li>
       <li class="list-group-item"><%= profile.location %></li>
-      <% if profile.picture != ""%>
-        <li class="list-group-item">
-         <% profile.picture %>
-        </li> 
-      <% end %>
       <li class="list-group-item"> <%= profile.gender %></li>
       <li class="list-group-item"><%= profile.bio %></li>
     </ul>
