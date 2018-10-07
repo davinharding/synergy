@@ -5,7 +5,9 @@
       <li class="list-group-item"><%=profile.age %></li>
       <li class="list-group-item"><%= profile.location %></li>
       <% if profile.picture != ""%>
-        <li class="list-group-item"><%= profile.picture %></li> 
+        <li class="list-group-item">
+         <% profile.picture %>
+        </li> 
       <% end %>
       <li class="list-group-item"> <%= profile.gender %></li>
       <li class="list-group-item"><%= profile.bio %></li>
