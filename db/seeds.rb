@@ -5,24 +5,43 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+require 'faker'
 
 [
   "Lifting",
+  "Cycling",
   "Swimming",
   "Running",
-  "Tennis"
+  "Tennis",
+  "Basketball",
+  "Soccer",
+  "Rowing"
 ].each do |activity|
   Activity.find_or_create_by(activity: activity)
 end
 
-[
-  "andy@gmail.com",
-  "davin@gmail.com",
-  "rumen@gmail.com"
-].each do |email|
-  User.create!(email: email, password: "password") unless User.find_by(email: email)
+n = 1
+
+100.times do
+  user = User.create(
+    email: Faker::Internet.free_email,
+    password: "asdfasdf",
+  )
+  Profile.find_or_create_by(
+    name: Faker::Name.first_name,
+    age: (13..65).to_a.sample,
+    user_id: n
+  )
+  n += 1
 end
+
+  # [
+#   "andy@gmail.com",
+#   "davin@gmail.com",
+#   "rumen@gmail.com"
+# ].each do |email|
+#   User.create!(email: email, password: "password") unless User.find_by(email: email)
+# end
 
 User.all.each do |user|
   Activity.all.each do |activity|
