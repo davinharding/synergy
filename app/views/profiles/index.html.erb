@@ -4,9 +4,14 @@
       <% if profile.image != ""%>
         <li class="list-group-item">
           <%= image_tag profile.image.url(:thumb) %>
-        </li> 
+        </li>
       <% end %>
       <li class="list-group-item"><%= profile.name %></li>
+      <% profile.user.activities.each do |activity| %>
+        <div>
+          <%= activity.activity %>
+        </div>
+      <% end %>
       <li class="list-group-item"><%=profile.age %></li>
       <li class="list-group-item"><%= profile.location %></li>
       <li class="list-group-item"> <%= profile.gender %></li>
