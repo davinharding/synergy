@@ -8,6 +8,7 @@
             <% end %>
         </li>
       <% end %>
+
       <li class="list-group-item"><%= link_to "#{profile.name}", profile %></li>
       <% profile.user.activities.each do |activity| %>
         <div>
