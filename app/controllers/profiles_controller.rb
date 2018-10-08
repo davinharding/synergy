@@ -2,9 +2,11 @@ class ProfilesController < ApplicationController
   skip_before_action :send_user_to_create_profile_unless_profile_exists, only: [:new, :create]
 
   def index
-    @profiles = Profile.all
-    @activities = Activity.all 
+    @profiles = Profile.near([current_user.profile.latitude, current_user.profile.longitude], 10)
+    @activities = Activity.all
   end
+
+  # @locations = Location.near([current_user.latitude, current_user.longitude], 50, :order => :distance)
 
   def new
     @profile = Profile.new
@@ -15,6 +17,14 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.save
+    Activity.all.each do |activity|
+      id = activity.id.to_s
+      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
+        current_user.activities << Activity.find(id)
+      elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
+        current_user.activities.delete(activity)
+      end
+    end
     redirect_to profiles_path
   end
 
@@ -44,7 +54,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:name, :age, :location, :picture, :activity, :gender, :bio, :user_id, :image)
+    params.require(:profile).permit(:name, :age, :location, :picture, :activity, :gender, :bio, :user_id, :image, :city, :state, :street, :country)
   end
 
 end
