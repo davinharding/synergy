@@ -7,11 +7,11 @@
         </li>
       <% end %>
       <li class="list-group-item"><%= profile.name %></li>
-      <% profile.user.activities.each do |activity| %>
-        <div>
-          <%= activity.activity %>
-        </div>
-      <% end %>
+      <li class="list-group-item">
+        <% profile.user.activities.each do |activity| %>
+            <div><%= activity.activity %></div>
+        <% end %>
+      </li>
       <li class="list-group-item"><%=profile.age %></li>
       <li class="list-group-item"><%= profile.city %></li>
       <li class="list-group-item"> <%= profile.gender %></li>
