@@ -2,9 +2,9 @@ class ProfilesController < ApplicationController
   skip_before_action :send_user_to_create_profile_unless_profile_exists, only: [:new, :create]
 
   def index
-    @allProfiles = Profile.all
     @profiles = Profile.near([current_user.profile.latitude, current_user.profile.longitude], 10)
     @activities = Activity.all
+    @user_activities = current_user.activities
   end
 
   def show
@@ -59,5 +59,4 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:name, :age, :location, :picture, :activity, :gender, :bio, :user_id, :image, :city, :state, :street, :country)
   end
-
 end
