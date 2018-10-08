@@ -2,36 +2,46 @@ class ProfilesController < ApplicationController
   skip_before_action :send_user_to_create_profile_unless_profile_exists, only: [:new, :create]
 
   def index
-    @profiles = Profile.all
+    @profiles = Profile.near([current_user.profile.latitude, current_user.profile.longitude], 10)
+    @activities = Activity.all
   end
 
-  def new 
-    @profile = Profile.new
-    @activities = Activity.all 
-    @user_activities = current_user.activities
-  end 
+  # @locations = Location.near([current_user.latitude, current_user.longitude], 50, :order => :distance)
 
-  def create 
+  def new
+    @profile = Profile.new
+    @activities = Activity.all
+    @user_activities = current_user.activities
+  end
+
+  def create
     @profile = Profile.new(profile_params)
     @profile.save
+    Activity.all.each do |activity|
+      id = activity.id.to_s
+      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
+        current_user.activities << Activity.find(id)
+      elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
+        current_user.activities.delete(activity)
+      end
+    end
     redirect_to profiles_path
-  end 
+  end
 
-  def edit 
+  def edit
     @profile = current_user.profile
-    @activities = Activity.all 
+    @activities = Activity.all
     @user_activities = current_user.activities
     # redirect_to profiles_path
   end
 
-  def update 
+  def update
     @profile = Profile.find(params[:id])
     @profile.update(profile_params)
-    
 
     Activity.all.each do |activity|
       id = activity.id.to_s
-      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity) 
+      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
         current_user.activities << Activity.find(id)
       elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
         current_user.activities.delete(activity)
@@ -39,12 +49,12 @@ class ProfilesController < ApplicationController
     end
 
     redirect_to profiles_path
-  end 
+  end
 
-  private 
+  private
 
   def profile_params
-    params.require(:profile).permit(:name, :age, :location, :picture, :activity, :gender, :bio, :user_id, :image)
+    params.require(:profile).permit(:name, :age, :location, :picture, :activity, :gender, :bio, :user_id, :image, :city, :state, :street, :country)
   end
 
 end
