@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'bootstrap-sass'
-gem 'jquery-rails'
+
+
 gem 'paperclip'
 gem 'hirb'
 gem 'devise-bootstrap-views', '~> 1.0'
