@@ -1,11 +1,12 @@
   <div class="card" >
     <ul class="list-group">
         <li class="list-group-item">
-          <%= image_tag @profile.image.url(:thumb) %>
+          <%= image_tag @profile.image.url(:medium) %>
         </li>
-      <li class="list-group-item"><%= @profile.name %></li>
-      <li class="list-group-item"><%= @profile.age %></li>
-      <li class="list-group-item"><%= @profile.street %></li>
+      <li class="list-group-item"><%= @profile.name %>, <%= @profile.age %></li>
+      <li class="list-group-item"><% @profile.activities.each do |activity| %>
+        <%= activity.activity %>
+      <% end %></li>
       <li class="list-group-item"> <%= @profile.city %>, <%= @profile.state %></li>
       <li class="list-group-item"><%= @profile.bio %></li>
     </ul>

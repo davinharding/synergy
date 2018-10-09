@@ -100,7 +100,12 @@ n = 1
       '1700 Biscayne Blvd'
     ].sample,
     city: "Miami",
-    state: "Florida"
+    state: "Florida",
+    bio: [
+      Faker::SiliconValley.quote,
+      Faker::MichaelScott.quote,
+      Faker::HarryPotter.quote
+  ].sample
   )
   n += 1
 end
@@ -116,5 +121,6 @@ end
 User.all.each do |user|
   Activity.all.each do |activity|
     UserActivity.find_or_create_by(user: user, activity: activity) if [true, false].sample
-  end
+  end  
 end
+
