@@ -4,8 +4,8 @@ class ProfilesController < ApplicationController
   #Chose one line below based on Geo filter or no geo filter
   
   def index
-    # @profiles = Profile.near([current_user.profile.latitude, current_user.profile.longitude], 10)
-    @profiles = Profile.all
+    @profiles = Profile.near([current_user.profile.latitude, current_user.profile.longitude], 2)
+    # @profiles = Profile.all
 
     @activities = Activity.all
   end
