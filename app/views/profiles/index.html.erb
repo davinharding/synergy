@@ -1,3 +1,32 @@
+<%= form_with(model: @profile, html: { multipart: true } ) do |form| %>
+<%= form_tag 'index', method: 'get' do %>
+<div>
+  <%= text_field_tag :search, params[:search]%>
+  <%= submit_tag "Search", name: nil %>
+</div>
+<div class="form-group">
+  <%= form.label :age %>
+  <%= form.text_field :age %>
+</div>
+<div class="form-group">
+  <%= form.label :gender %>
+  <%= form.text_field :gender %>
+</div>
+<div>
+<ul>
+  <% @activities.each do |activity| %>
+    <li>
+      <% if @user_activities.include?(activity)%>
+        <%= check_box_tag( "activity[]", activity.id, checked = true) %>
+      <% else %>
+        <%= check_box_tag( "activity[]", activity.id, checked = false) %>
+      <% end %>
+    <%= activity.activity %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
 <% @profiles.each do |profile|%>
   <div class="card" >
     <ul class="list-group">
@@ -15,4 +44,5 @@
       <% end %></li>
     </ul>
   </div>
+<% end %>
 <% end %>

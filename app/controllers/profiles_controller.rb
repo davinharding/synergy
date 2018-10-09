@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
     # @profiles = Profile.where(activities: @current_user_activities)
     @profiles = Profile.all.near([current_user.profile.latitude, current_user.profile.longitude], 1)
     @activities = Activity.all
+    @user_activities = current_user.activities
   end
 
   def show
@@ -63,5 +64,4 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:name, :age, :location, :picture, :activity, :gender, :bio, :user_id, :image, :city, :state, :street, :country)
   end
-
 end
