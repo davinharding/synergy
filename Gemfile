@@ -3,8 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+<<<<<<< HEAD
 
 
+=======
+gem 'faker'
+>>>>>>> c4ac41622718cee3b02be474dbd10856af630664
 gem 'paperclip'
 gem 'hirb'
 gem 'devise-bootstrap-views', '~> 1.0'

@@ -4,20 +4,15 @@
       <% if profile.image != ""%>
         <li class="list-group-item">
           <%= link_to profile do %>
-            <%= image_tag profile.image.url(:thumb) %>
+            <%= image_tag profile.image.url(:medium) %>
             <% end %>
         </li>
       <% end %>
-      <li class="list-group-item"><%= link_to "#{profile.name}", profile %></li>
-      <% profile.user.activities.each do |activity| %>
-        <div>
-          <%= link_to "#{activity.activity}", profile %>
-        </div>
-      <% end %>
-      <li class="list-group-item"><%= link_to "#{profile.age}", profile %></li>
-      <li class="list-group-item"><%=  link_to "#{profile.city}", profile %></li>
-      <li class="list-group-item"> <%= link_to "#{profile.gender}", profile %></li>
-      <li class="list-group-item"><%=  link_to "#{profile.bio}", profile %></li>
+
+      <li class="list-group-item"><%= link_to "#{profile.name}", profile %>, <%= profile.age %></li>
+      <li class="list-group-item"><% profile.activities.each do |activity| %>
+          <%= activity.activity %>
+      <% end %></li>
     </ul>
   </div>
 <% end %>

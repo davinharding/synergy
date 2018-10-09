@@ -1,9 +1,12 @@
 class ProfilesController < ApplicationController
   skip_before_action :send_user_to_create_profile_unless_profile_exists, only: [:new, :create]
 
+  #Chose one line below based on Geo filter or no geo filter
+  
   def index
-    @allProfiles = Profile.all
-    @profiles = Profile.near([current_user.profile.latitude, current_user.profile.longitude], 10)
+    @current_user_activities = current_user.activities
+    # @profiles = Profile.where(activities: @current_user_activities)
+    @profiles = Profile.all.near([current_user.profile.latitude, current_user.profile.longitude], 1)
     @activities = Activity.all
   end
 
@@ -46,6 +49,7 @@ class ProfilesController < ApplicationController
       id = activity.id.to_s
       if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
         current_user.activities << Activity.find(id)
+        current_user.activities.sortgi
       elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
         current_user.activities.delete(activity)
       end

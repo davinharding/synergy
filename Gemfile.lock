@@ -78,6 +78,8 @@ GEM
     devise-bootstrap-views (1.1.0)
     erubi (1.7.1)
     execjs (2.7.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     ffi (1.9.25)
     geocoder (1.5.0)
     globalid (0.4.1)
@@ -114,7 +116,7 @@ GEM
     msgpack (1.2.4)
     multi_json (1.13.1)
     nio4r (2.3.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     paperclip (6.1.0)
@@ -160,7 +162,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    react_on_rails (11.1.5)
+    react_on_rails (11.1.6)
       addressable
       connection_pool
       execjs (~> 2.5)
@@ -236,6 +238,7 @@ DEPENDENCIES
   chromedriver-helper
   devise
   devise-bootstrap-views (~> 1.0)
+  faker
   geocoder
   hirb
   jbuilder (~> 2.5)
@@ -260,4 +263,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.6
+   1.16.5
