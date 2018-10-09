@@ -6,7 +6,8 @@ class ProfilesController < ApplicationController
   def index
     @current_user_activities = current_user.activities
     # @profiles = Profile.where(activities: @current_user_activities)
-    @profiles = Profile.all.near([current_user.profile.latitude, current_user.profile.longitude], 1)
+    #@profiles = Profile.all.near([current_user.profile.latitude, current_user.profile.longitude], 1)
+    @profiles = Profile.all
     @activities = Activity.all
   end
 
