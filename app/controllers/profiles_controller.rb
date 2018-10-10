@@ -4,11 +4,19 @@ class ProfilesController < ApplicationController
   #Chose one line below based on Geo filter or no geo filter
   
   def index
-    @current_user_activities = current_user.activities
+    @profiles = Profile.all
+    respond_to do |format|
+      format.html
+      format.json do 
+        @profiles = Profile.all
+        @activities = Activity.all
+        @current_user_activities = current_user.activities
+        render json: @profiles
+      end 
+    end 
     # @profiles = Profile.where(activities: @current_user_activities)
     #@profiles = Profile.all.near([current_user.profile.latitude, current_user.profile.longitude], 1)
-    @profiles = Profile.all
-    @activities = Activity.all
+    
   end
 
   def show
@@ -24,6 +32,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.save
+    render json: @profile
     Activity.all.each do |activity|
       id = activity.id.to_s
       if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)

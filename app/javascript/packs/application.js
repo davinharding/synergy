@@ -8,11 +8,12 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import ReactOnRails from 'react-on-rails';
-import Carousel from '../bundles/Carousel/Carousel'
+import Profile from '../bundles/Carousel/Profile'
 import HelloWorld from '../bundles/HelloWorld/components/HelloWorld';
+import 'babel-polyfill'
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
   HelloWorld,
-  Carousel
+  Profile
 });
