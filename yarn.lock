@@ -4561,7 +4561,7 @@ promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
 
-prop-types@^15.6.2:
+prop-types@^15.6.0, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -4708,11 +4708,19 @@ react-dom@^16.5.2:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
-react-on-rails@11.1.5:
-  version "11.1.5"
-  resolved "https://registry.yarnpkg.com/react-on-rails/-/react-on-rails-11.1.5.tgz#e69b39b5f6b0101f66cd4ae6a0c2d91e427dd59c"
+react-on-rails@11.1.6:
+  version "11.1.6"
+  resolved "https://registry.yarnpkg.com/react-on-rails/-/react-on-rails-11.1.6.tgz#fdd1b12f8a80fbda72e4db4e8cabeb09791ed53a"
   dependencies:
     "@babel/runtime-corejs2" "^7.0.0"
+
+react-swipe@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/react-swipe/-/react-swipe-5.1.1.tgz#5aeb08afc5efec13507aed6e5841360821e9f0d1"
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+    swipe-js-iso "^2.0.4"
 
 react@^16.5.2:
   version "16.5.2"
@@ -5527,6 +5535,10 @@ svgo@^0.7.0:
     mkdirp "~0.5.1"
     sax "~1.2.1"
     whet.extend "~0.9.9"
+
+swipe-js-iso@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/swipe-js-iso/-/swipe-js-iso-2.0.4.tgz#3371608112b30182e898f61d5bc02f7e38099c3d"
 
 tapable@^0.2.7:
   version "0.2.8"
