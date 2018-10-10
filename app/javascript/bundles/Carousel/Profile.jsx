@@ -3,51 +3,110 @@ import Carousel from 'nuka-carousel'
 import axios from 'axios'
 
 class Profile extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      profiles: [],
-      activities: []
-    }
+  state = {
+    radius: 10,
+    minAge: 0,
+    maxAge: 100,
+    profiles:   [],
+    activities: this.props.activities
   }
 
-  async componentDidMount() {
-    let profiles;
-    let activities;
-    profiles = await axios.get('./profiles.json')
-    activities = await axios.get('./activities.json')
-    profiles = await profiles.data;
-    activities = await activities.data;
-    this.setState({profiles, activities})
-    // console.log(this.state.activities)
-    // profiles = await profiles.map((profile, i) => {
-    //   profile.activities = activities[i]
-    // })
-    // console.log(profiles)
+  handleMinAgeChange = event => {
+    const minAge = event.target.value;
+    const { maxAge, activities, radius } = this.state;
+    this.fetchProfiles(minAge, maxAge, activities, radius);
+  }
 
-    // activities.reverse().map(activity => {
-    //   profiles.map(profile => {
-    //     profile.activities = activity
-    //   })
-    // })
-    // this.setState({profiles}) 
-    // console.log(this.state.profiles)
+  handleMaxAgeChange = event => {
+    const maxAge = event.target.value;
+    const { minAge, activities, radius } = this.state;
+    this.fetchProfiles(minAge, maxAge, activities, radius);
+  }
+
+  handleRadiusChange = event => {
+    const radius = event.target.value;
+    const { minAge, maxAge, activities } = this.state;
+    this.fetchProfiles(minAge, maxAge, activities, radius);
+  }
+
+  fetchProfiles = (minAge, maxAge, activities, radius) => {
+    let activityParams = []
+    activities.forEach((activity) => { activityParams.push(`activity[]=${activity}`) })
+    activityParams = activityParams.join("&")
+    axios.get(`/profiles.json?${activityParams}&min_age=${minAge}&max_age=${maxAge}&radius=${radius}`)
+      .then((response) => {
+        console.log(response.data.length)
+        this.setState({
+          radius,
+          minAge,
+          maxAge,
+          activities,
+          profiles: response.data
+        })
+      })
+  }
+
+  handleActivityChange = (activity, active) => {
+    let { activities, minAge, maxAge, radius } = this.state;
+    if(active){
+      activities.push(activity);
+    }else{
+      activities = activities.filter(a => a !== activity)
+    }
+    this.fetchProfiles(minAge, maxAge, activities, radius);
+  }
+
+  componentDidMount() {
+    const { minAge, maxAge, activities, radius } = this.state;
+    this.fetchProfiles(minAge, maxAge, activities, radius);
   }
     render() {
-        return (
-          <div className="profile">
+      const { profiles, minAge, maxAge, activities, radius } = this.state;
+      return (
+        <div className="profile">
+          <input
+            type="number"
+            value={minAge}
+            onChange={this.handleMinAgeChange}
+          />
+          <input
+            type="number"
+            value={maxAge}
+            onChange={this.handleMaxAgeChange}
+          />
+          {
+            this.props.activities.map((activity) => {
+              return(
+                <div key={activity}>
+                  <label>{activity}</label>
+                  <input
+                    type="checkbox"
+                    checked={activities.includes(activity)}
+                    onChange={ () => { this.handleActivityChange(activity, !activities.includes(activity))} }
+                  />
+                </div>
+              );
+            })
+          }
+          <input
+            type="number"
+            value={radius}
+            onChange={this.handleRadiusChange}
+          />
+          <Carousel>
             {
-              this.state.profiles.map((profile,i) => {
-                profile.activities = this.state.activities[i]
+              profiles.map((profile) => {
+                return(
+                  <div key={profile.id}>
+                    <p>{ profile.name }</p>
+                    <p>{ profile.age }</p>
+                  </div>
+                );
               })
             }
-            {console.log(this.state.profiles)}
-            <Carousel>
-              {this.state.profiles.map(profile=>profile.name)}
-              {/* How do I get more then one element to render above? */}
-            </Carousel>
-          </div>
-        );
+          </Carousel>
+        </div>
+      );
     }
 }
 
