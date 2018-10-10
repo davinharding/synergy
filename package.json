@@ -7,7 +7,9 @@
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-on-rails": "11.1.6"
+    "react-on-rails": "11.1.6",
+    "react-swipe": "^5.1.1",
+    "swipe-js-iso": "^2.0.4"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
