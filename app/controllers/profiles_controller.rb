@@ -37,6 +37,19 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.save
+    params[:profile][:activity][:activity].each do |activity, attributes|
+      if attributes[:checked] == "true"
+        user_activity = UserActivity.find_or_create_by(
+                          user: current_user,
+                          activity: Activity.find_by_activity(activity)
+                        )
+        user_activity.skill_level = attributes[:skill_level]
+        user_activity.save
+      else
+        UserActivity.where(
+          user: current_user,
+          activity: Activity.find_by_activity(activity)
+        ).delete_all
     render json: @profile
     Activity.all.each do |activity|
       id = activity.id.to_s
@@ -59,7 +72,19 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
     @profile.update(profile_params)
-
+    params[:profile][:activity][:activity].each do |activity, attributes|
+      if attributes[:checked] == "true"
+        user_activity = UserActivity.find_or_create_by(
+                          user: current_user,
+                          activity: Activity.find_by_activity(activity)
+                        )
+        user_activity.skill_level = attributes[:skill_level]
+        user_activity.save
+      else
+        UserActivity.where(
+          user: current_user,
+          activity: Activity.find_by_activity(activity)
+        ).delete_all
     Activity.all.each do |activity|
       id = activity.id.to_s
       if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
@@ -69,7 +94,6 @@ class ProfilesController < ApplicationController
         current_user.activities.delete(activity)
       end
     end
-
     redirect_to profiles_path
   end
 

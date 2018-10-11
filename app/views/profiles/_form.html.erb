@@ -41,14 +41,15 @@
   <div class="form-group 2">
   <ul>
     <% @activities.each do |activity| %>
-      <%# <li> %>
-        <% if @user_activities.include?(activity)%>
-          <%= check_box_tag( "activity[]", activity.id, checked = true) %>
-        <% else %>
-          <%= check_box_tag( "activity[]", activity.id, checked = false) %>
+      <li>
+        <%= form.fields_for :activity do |form_act|%>
+          <%= form_act.check_box( "activity[#{activity.activity}][checked]", { class: 'activityItem', id: activity.id, checked: @profile.activities.include?(activity), data: { skill: activity.skill_level_for(@profile.user)}},'true', 'false') %>
+          <%= activity.activity %>
+          <span>
+            <%= form_act.select "activity[#{activity.activity}][skill_level]", options_for_select(["Beginner", "Intermediate", "Expert"]),{},  class: 'activityDropdown', id: activity.id %>
+          </span>
         <% end %>
-      <%= activity.activity %>
-      <%# </li> %>
+      </li>
     <% end %>
     </ul>
   </div>
@@ -62,6 +63,6 @@
   </div>
 
   <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= submit_tag("Submit") %>
+  <%= submit_tag("Submit") %>
   <% end %>
 </div>

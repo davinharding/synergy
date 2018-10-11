@@ -13,11 +13,12 @@
  *= require_tree .
  *= require_self
  */
-
-
-
 ul {
   list-style-type: none;
+  }
+
+  .activityDropdown {
+    visibility: hidden;
   }
 
 .page-title {
@@ -33,14 +34,11 @@ ul {
   // background: rgba(0,0,0,.2);
 }
 
-
 .synergy-new {
   text-align: center;
   margin-left: 12px;
   margin-bottom: 45px;
 }
-
-
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: rgba(0, 0, 0, 0.37);
@@ -56,18 +54,10 @@ ul {
   color:  rgba(0, 0, 0, 0.37);
 }
 
-
-
-
-
-
 .form-group{
   margin-top: -18px;
-  background: 100vh;
-  
+  background: 100vh; 
 }
-
-
 
 body{
 background: rgb(247,161,0);
@@ -84,12 +74,10 @@ input[type=text] {
   color: white;
   font-size: 22px;
 }
+
 .form-groups {
  font-size:16px;
  line-height:  42px;
   
 
 }
-
-
-
