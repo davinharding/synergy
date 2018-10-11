@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'activities/index'
   resources :profiles
+  resources :activities
   get 'hello_world', to: 'hello_world#index'
   devise_for :users
   root 'profiles#index'

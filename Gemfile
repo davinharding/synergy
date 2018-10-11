@@ -5,11 +5,13 @@ ruby '2.5.1'
 
 
 gem 'pry'
+gem 'httparty'
+gem 'json'
 gem 'faker'
 gem 'paperclip'
 gem 'hirb'
 gem 'devise-bootstrap-views', '~> 1.0'
-gem "react_on_rails"
+gem 'react_on_rails'
 gem 'devise'
 gem 'geocoder'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -23,7 +25,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker'
+gem 'webpacker','~>3.5'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 

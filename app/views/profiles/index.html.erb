@@ -16,3 +16,6 @@
     </ul>
   </div>
 <% end %>
+
+<%= react_component 'Profile',
+    props: { activities: current_user.activities.pluck(:activity) } %>

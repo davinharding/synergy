@@ -4,10 +4,24 @@ class ProfilesController < ApplicationController
   #Chose one line below based on Geo filter or no geo filter
 
   def index
-    @current_user_activities = current_user.activities
-    # @profiles = Profile.where(activities: @current_user_activities)
-    @profiles = Profile.all.near([current_user.profile.latitude, current_user.profile.longitude], 1)
-    @activities = Activity.all
+    @profiles = Profile.all
+    respond_to do |format|
+      format.html
+      format.json do
+        @profiles = Profile.near(
+                      [
+                        current_user.profile.latitude,
+                        current_user.profile.longitude
+                      ], params[:radius]
+                    ).distinct
+        @profiles = @profiles.min_age(params[:min_age]) if params[:min_age].present?
+        @profiles = @profiles.max_age(params[:max_age]) if params[:max_age].present?
+        @profiles = @profiles.by_gender(params[:gender]) if params[:gender].present?
+        @profiles = @profiles.by_activity(params[:activity])
+
+        render json: @profiles
+      end
+    end
   end
 
   def show
@@ -36,6 +50,13 @@ class ProfilesController < ApplicationController
           user: current_user,
           activity: Activity.find_by_activity(activity)
         ).delete_all
+    render json: @profile
+    Activity.all.each do |activity|
+      id = activity.id.to_s
+      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
+        current_user.activities << Activity.find(id)
+      elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
+        current_user.activities.delete(activity)
       end
     end
     redirect_to profiles_path
@@ -64,6 +85,13 @@ class ProfilesController < ApplicationController
           user: current_user,
           activity: Activity.find_by_activity(activity)
         ).delete_all
+    Activity.all.each do |activity|
+      id = activity.id.to_s
+      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
+        current_user.activities << Activity.find(id)
+        current_user.activities.sort
+      elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
+        current_user.activities.delete(activity)
       end
     end
     redirect_to profiles_path
