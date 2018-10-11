@@ -2,6 +2,7 @@
   <%= form_with(model: @profile, html: { multipart: true } ) do |form| %>
 
 
+
   <div class="form-group">
     <i class="fas fa-user-circle" style= "font-size: 25px;"></i>
     <%= form.text_field :name , placeholder:"Name"%>
@@ -36,7 +37,21 @@
     <div class="form-group">
      
     </div>
-
+ <h2>What?</h2>
+  <div class="form-group 2">
+  <ul>
+    <% @activities.each do |activity| %>
+      <%# <li> %>
+        <% if @user_activities.include?(activity)%>
+          <%= check_box_tag( "activity[]", activity.id, checked = true) %>
+        <% else %>
+          <%= check_box_tag( "activity[]", activity.id, checked = false) %>
+        <% end %>
+      <%= activity.activity %>
+      <%# </li> %>
+    <% end %>
+    </ul>
+  </div>
 
  
 
