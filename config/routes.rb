@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'activities/index'
-  resources :profiles
+  resources :profiles do
+    resources :messages, only: [:create, :index]
+  end
   resources :activities
   get 'hello_world', to: 'hello_world#index'
   devise_for :users

@@ -1,0 +1,11 @@
+<h1>Your chat history with <%= @profile.name %></h1>
+
+<ul>
+  <% @messages.each do |message| %>
+    <li><%= message.content %> (<%= message.sender.name %>)</li>
+  <% end %>
+</ul>
+
+<%= form_with(model: [@profile, @message]) do |form| %>
+  <%= form.text_field :content, class: "form-control" %>
+<% end %>
