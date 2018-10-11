@@ -26,3 +26,7 @@
 ul {
   list-style-type: none;
   }
+
+  .activityDropdown {
+    visibility: hidden;
+  }

@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   skip_before_action :send_user_to_create_profile_unless_profile_exists, only: [:new, :create]
 
   #Chose one line below based on Geo filter or no geo filter
-  
+
   def index
     @current_user_activities = current_user.activities
     # @profiles = Profile.where(activities: @current_user_activities)
@@ -21,6 +21,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
+    binding.pry
     @profile = Profile.new(profile_params)
     @profile.save
     Activity.all.each do |activity|

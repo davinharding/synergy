@@ -8,3 +8,13 @@
 // layout file, like app/views/layouts/application.html.erb
 
 console.log('Hello World from Webpacker')
+
+$(document).on('turbolinks:load', function() {
+  $('.activityItem').click((event)=>{
+    if($(event.target).is(':checked')) {
+      $('#' + event.target.id + '.activityDropdown').css('visibility', 'visible')
+    } else {
+      $('#' + event.target.id + '.activityDropdown').css('visibility', 'hidden')
+    }
+  });
+});
