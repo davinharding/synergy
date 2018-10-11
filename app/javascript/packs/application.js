@@ -10,10 +10,12 @@
 import ReactOnRails from 'react-on-rails';
 import Profile from '../bundles/Carousel/Profile'
 import HelloWorld from '../bundles/HelloWorld/components/HelloWorld';
+import Messages from '../bundles/Messages/components/Messages';
 import 'babel-polyfill'
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
   HelloWorld,
-  Profile
+  Profile,
+  Messages
 });

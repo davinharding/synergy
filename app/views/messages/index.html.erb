@@ -1,0 +1,10 @@
+<h1>Your chat history with <%= @profile.name %></h1>
+
+<span id="channel" style="display:none;" data-channel="<%= @channel %>"></span>
+
+<%= react_component 'Messages',
+    props: {
+      currentProfile: current_user.profile,
+      profile:        @profile
+    }
+%>
