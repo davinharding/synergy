@@ -8,6 +8,14 @@ class Profile < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  scope :min_age,     ->  (age) { where("age >= ?", age ) }
+  scope :max_age,     ->  (age) { where("age <= ?", age) }
+  scope :by_gender,   ->  (gender) { where(gender: gender) }
+  scope :by_activity, ->  (activities) do
+                            joins(user: :activities)
+                              .where(activities: { activity: activities })
+                          end
+
   def address
     [street, city, state, country].compact.join(', ')
   end

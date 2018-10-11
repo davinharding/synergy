@@ -7,4 +7,13 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
+import ReactOnRails from 'react-on-rails';
+import Profile from '../bundles/Carousel/Profile'
+import HelloWorld from '../bundles/HelloWorld/components/HelloWorld';
+import 'babel-polyfill'
+
+// This is how react_on_rails can see the HelloWorld in the browser.
+ReactOnRails.register({
+  HelloWorld,
+  Profile
+});
