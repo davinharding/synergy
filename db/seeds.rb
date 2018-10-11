@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+require 'httparty'
+require 'json'
+url = 'https://randomuser.me/api/'
+response = HTTParty.get(url)
+
 
 [
   "Lifting",
@@ -23,6 +28,8 @@ end
 n = 1
 
 100.times do
+  url = 'https://randomuser.me/api/'
+  response = HTTParty.get(url)
   user = User.create(
     email: Faker::Internet.free_email,
     password: "asdfasdf",
@@ -101,6 +108,7 @@ n = 1
     ].sample,
     city: "Miami",
     state: "Florida",
+    image_file_name: response.parsed_response['results'].last['picture']['medium'],
     bio: [
       Faker::SiliconValley.quote,
       Faker::MichaelScott.quote,
