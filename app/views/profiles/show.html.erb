@@ -1,7 +1,7 @@
   <div class="card" >
     <ul class="list-group">
         <li class="list-group-item">
-          <%= image_tag @profile.image.url(:medium) %>
+          <%= image_tag @profile.image_file_name %>
         </li>
       <li class="list-group-item"><%= @profile.name %>, <%= @profile.age %></li>
       <li class="list-group-item"><% @profile.activities.each do |activity| %>
