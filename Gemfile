@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'httparty'
+gem 'json'
 gem 'faker'
 gem 'paperclip'
 gem 'hirb'
