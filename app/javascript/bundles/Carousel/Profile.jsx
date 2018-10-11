@@ -98,8 +98,10 @@ class Profile extends React.Component {
               profiles.map((profile) => {
                 return(
                   <div key={profile.id}>
-                    <p>{ profile.name }</p>
+                    <p><a href={`/profiles/${profile.id}`}>{ profile.name }</a></p>
                     <p>{ profile.age }</p>
+                    <p> {this.props.activities} </p>
+                    <p>  </p>
                   </div>
                 );
               })
