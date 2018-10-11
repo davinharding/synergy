@@ -1,17 +1,26 @@
 class MessagesController < ApplicationController
   before_action :set_profile
+  skip_before_action :verify_authenticity_token
 
   def create
-    @profile.received_messages.create(
+    message = @profile.received_messages.create(
       sender:   current_user.profile,
       content:  message_params[:content]
     )
-    redirect_to profile_messages_path(@profile)
+    render json: message
   end
 
   def index
     @messages = Message.between(@profile, current_user.profile)
-    @message  = Message.new
+    @channel = "messages:#{[@profile.id, current_user.profile.id].sort.join(':')}"
+    respond_to do |format|
+      format.html do
+        @message  = Message.new
+      end
+      format.json do
+        render json:  @messages.map{|m| m.attributes.merge(sender: m.sender.attributes, recipient: m.recipient.attributes) }
+      end
+    end
   end
 
   private
