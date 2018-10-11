@@ -1,56 +1,68 @@
-  <div class="container">
+<div class="panel-body">
   <%= form_with(model: @profile, html: { multipart: true } ) do |form| %>
-  <h2>Who?</h2>
+
+
+
   <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <i class="fas fa-user-circle" style= "font-size: 25px;"></i>
+    <%= form.text_field :name , placeholder:"Name"%>
   </div>
+  
+
+  
   <div class="form-group">
-    <%= form.label :age %>
-    <%= form.text_field :age %>
+    <i class="fas fa-home" style= "font-size: 25px;"></i>
+    <%= form.text_field :street, placeholder:"Address" %>
   </div>
+
   <div class="form-group">
-    <%= form.label :gender %>
-    <%= form.text_field :gender %>
+  <i class="fas fa-city" style= "font-size: 25px;"></i>
+    <%= form.text_field :city, placeholder:"City" %>
   </div>
+
   <div class="form-group">
-    <%= form.label :bio %>
-    <%= form.text_field :bio %>
+   <i class="fas fa-home" style="font-size: 25px;visibility:hidden;"></i>
+   <%= form.text_field :state, placeholder:"State" %>
   </div>
-  <div class="form-group">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-  <h2>What?</h2>
+
+<br>
+
+    <div class="form-group">
+      <%= form.label :age %>
+      <%= select_tag(:gender, '<option value="1">Lisbon</option>...') %>
+       <%= form.label :gender %>
+      <%= select_tag(:gender, '<option value="1">Lisbon</option>...') %>
+    </div>
+  
+    <div class="form-group">
+     
+    </div>
+ <h2>What?</h2>
   <div class="form-group 2">
   <ul>
     <% @activities.each do |activity| %>
-      <%# <li> %>
-        <% if @user_activities.include?(activity)%>
-          <%= check_box_tag( "activity[]", activity.id, checked = true) %>
-        <% else %>
-          <%= check_box_tag( "activity[]", activity.id, checked = false) %>
+      <li>
+        <%= form.fields_for :activity do |form_act|%>
+          <%= form_act.check_box( "activity[#{activity.activity}][checked]", { class: 'activityItem', id: activity.id, checked: @profile.activities.include?(activity), data: { skill: activity.skill_level_for(@profile.user)}},'true', 'false') %>
+          <%= activity.activity %>
+          <span>
+            <%= form_act.select "activity[#{activity.activity}][skill_level]", options_for_select(["Beginner", "Intermediate", "Expert"]),{},  class: 'activityDropdown', id: activity.id %>
+          </span>
         <% end %>
-      <%= activity.activity %>
-      <%# </li> %>
+      </li>
     <% end %>
     </ul>
   </div>
-  <h2>Where?</h2>
-  <div class="form-group 2">
-    <%= form.label :street %>
-    <%= form.text_field :street %>
+
+ 
+
+
+  <div class="form-group">
+    <%= form.label :bio %>
+    <%= form.text_area :bio %>
   </div>
-  <div class="form-group 2">
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
-  <div class="form-group 2">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
-  </div>
-  </div>
+
   <%= form.hidden_field :user_id, value: current_user.id %>
-    <%= submit_tag("Submit") %>
+  <%= submit_tag("Submit") %>
   <% end %>
 </div>
