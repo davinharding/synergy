@@ -11,7 +11,7 @@
 
       <li class="list-group-item"><%= link_to "#{profile.name}", profile %>, <%= profile.age %></li>
       <li class="list-group-item"><% profile.activities.each do |activity| %>
-          <%= activity.activity %>
+          <%= activity.activity %> (<%= activity.skill_level_for(profile.user) %>)
       <% end %></li>
     </ul>
   </div>

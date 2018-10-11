@@ -21,15 +21,21 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    binding.pry
     @profile = Profile.new(profile_params)
     @profile.save
-    Activity.all.each do |activity|
-      id = activity.id.to_s
-      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
-        current_user.activities << Activity.find(id)
-      elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
-        current_user.activities.delete(activity)
+    params[:profile][:activity][:activity].each do |activity, attributes|
+      if attributes[:checked] == "true"
+        user_activity = UserActivity.find_or_create_by(
+                          user: current_user,
+                          activity: Activity.find_by_activity(activity)
+                        )
+        user_activity.skill_level = attributes[:skill_level]
+        user_activity.save
+      else
+        UserActivity.where(
+          user: current_user,
+          activity: Activity.find_by_activity(activity)
+        ).delete_all
       end
     end
     redirect_to profiles_path
@@ -45,17 +51,21 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
     @profile.update(profile_params)
-
-    Activity.all.each do |activity|
-      id = activity.id.to_s
-      if params&.dig(:activity)&.include?(id) && !current_user.activities.include?(activity)
-        current_user.activities << Activity.find(id)
-        current_user.activities.sortgi
-      elsif current_user.activities.include?(activity) && !params&.dig(:activity)&.include?(id)
-        current_user.activities.delete(activity)
+    params[:profile][:activity][:activity].each do |activity, attributes|
+      if attributes[:checked] == "true"
+        user_activity = UserActivity.find_or_create_by(
+                          user: current_user,
+                          activity: Activity.find_by_activity(activity)
+                        )
+        user_activity.skill_level = attributes[:skill_level]
+        user_activity.save
+      else
+        UserActivity.where(
+          user: current_user,
+          activity: Activity.find_by_activity(activity)
+        ).delete_all
       end
     end
-
     redirect_to profiles_path
   end
 

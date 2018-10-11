@@ -9,10 +9,10 @@
     <% @activities.each do |activity| %>
       <li>
         <%= form.fields_for :activity do |form_act|%>
-          <%= form_act.check_box( "activity[#{activity.activity}][checked]", { class: 'activityItem', id: activity.id},'true', 'false') %>
+          <%= form_act.check_box( "activity[#{activity.activity}][checked]", { class: 'activityItem', id: activity.id, checked: @profile.activities.include?(activity), data: { skill: activity.skill_level_for(@profile.user)}},'true', 'false') %>
           <%= activity.activity %>
           <span>
-            <%= form_act.select "activity[#{activity.activity}][thing]", options_for_select(["Beginner", "Intermediate", "Expert"]),{},  class: 'activityDropdown', id: activity.id %>
+            <%= form_act.select "activity[#{activity.activity}][skill_level]", options_for_select(["Beginner", "Intermediate", "Expert"]),{},  class: 'activityDropdown', id: activity.id %>
           </span>
         <% end %>
       </li>
