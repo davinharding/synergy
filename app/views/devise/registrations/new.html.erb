@@ -1,10 +1,7 @@
 <div class="synergy-new">
     <%= image_tag "synergylogo.png", :size => "220x35" %>
     <h6><%= t('.sign_up') %></h6>
-
 </div>
-
-
 <div class="panel-body">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= bootstrap_devise_error_messages! %>

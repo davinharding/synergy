@@ -5,7 +5,7 @@ import axios from 'axios'
 class Profile extends React.Component {
   state = {
     radius: 10,
-    minAge: 0,
+    minAge: 13,
     maxAge: 100,
     profiles:   [],
     activities: this.props.activities
@@ -79,12 +79,12 @@ class Profile extends React.Component {
             this.props.activities.map((activity) => {
               return(
                 <div key={activity}>
-                  <label>{activity}</label>
                   <input
                     type="checkbox"
                     checked={activities.includes(activity)}
                     onChange={ () => { this.handleActivityChange(activity, !activities.includes(activity))} }
                   />
+                  <label>{activity}</label>
                 </div>
               );
             })
