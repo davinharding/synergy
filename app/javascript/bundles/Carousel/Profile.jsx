@@ -64,6 +64,7 @@ class Profile extends React.Component {
       const { profiles, minAge, maxAge, activities, radius } = this.state;
       return (
         <div className="profile">
+          <p>{profiles.length} Synergies!</p>
           <input
             type="number"
             value={minAge}
