@@ -1,25 +1,20 @@
 
 <div class="synergy-new">
-    <%= image_tag "synergylogo.png", :size => "220x35" %>
-    <h6><%= t('.sign_in') %></h6>
-
+  <%= image_tag "synergylogo.png", :size => "220x35" %>
 </div>
 <div class = "panel-body">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
   <div class="form-group">
   <i class="fas fa-envelope"></i>
     <%= f.email_field :email, autofocus: true, placeholder: "Email", autocomplete: 'email', class: 'form-group', type: 'text' %>
   </div>
-   
-  
-
   <div class="form-group">
-  <div class="col-sm-offset-2 col-sm-5">
-  <i class="fas fa-key"></i>
-    <%= f.password_field :password, placeholder: "Password", autocomplete: 'current-password', class: 'form-group', type: 'text' %>
-  </div>
+    <div class="col-sm-offset-2 col-sm-5">
+      <i class="fas fa-key"></i>
+      <%= f.password_field :password, placeholder: "Password", autocomplete: 'current-password', class: 'form-group masked_input_field', type: 'password' %>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? %>
