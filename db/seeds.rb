@@ -108,7 +108,7 @@ n = 1
     ].sample,
     city: "Miami",
     state: "Florida",
-    image_file_name: response.parsed_response['results'].last['picture']['medium'],
+    image_file_name: response.parsed_response['results'].last['picture']['large'],
     bio: [
       Faker::SiliconValley.quote,
       Faker::MichaelScott.quote,
@@ -118,17 +118,9 @@ n = 1
   n += 1
 end
 
-  # [
-#   "andy@gmail.com",
-#   "davin@gmail.com",
-#   "rumen@gmail.com"
-# ].each do |email|
-#   User.create!(email: email, password: "password") unless User.find_by(email: email)
-# end
-
 User.all.each do |user|
   Activity.all.each do |activity|
-    UserActivity.find_or_create_by(user: user, activity: activity) if [true, false].sample
+    UserActivity.find_or_create_by(user: user, activity: activity) if [true, false, false].sample
   end  
 end
 

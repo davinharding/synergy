@@ -6,7 +6,7 @@ class Profile extends React.Component {
   state = {
     radius: 10,
     minAge: 13,
-    maxAge: 100,
+    maxAge: 40,
     profiles:   [],
     activities: this.props.activities
   }
@@ -65,16 +65,54 @@ class Profile extends React.Component {
       return (
         <div className="profile">
           <p>{profiles.length} Synergies!</p>
+          <Carousel 
+            slideIndex={1} 
+            swiping={true}
+            decorators={[]}
+            renderBottomLeftControls={({ previousSlide }) => (
+              <button onClick={previousSlide}>Previous</button>
+            )}
+            renderBottomRightControls={({ nextSlide }) => (
+              <button onClick={nextSlide}>Next</button>
+            )}
+          >
+            >
+            {
+              profiles.map((profile) => {
+                return(
+                  <div key={profile.id}>
+                    <a href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
+                    <p><a href={`/profiles/${profile.id}`}>{ profile.name }</a></p>
+                    <p>{ profile.age }</p>
+                    <p> {this.props.activities}</p>
+                    <p>  </p>
+                  </div>
+                );
+              })
+            }
+          </Carousel>
+          <label for="age range">Age Range: </label>
           <input
+            input size="10"
             type="number"
             value={minAge}
             onChange={this.handleMinAgeChange}
           />
+          <label for="to"> to </label>
           <input
             type="number"
             value={maxAge}
             onChange={this.handleMaxAgeChange}
+            width="20"
           />
+          <span></span>
+          <label for="radius">Radius: </label>
+          <input
+            type="number"
+            value={radius}
+            onChange={this.handleRadiusChange}
+          />
+          <span> mi</span>
           {
             this.props.activities.map((activity) => {
               return(
@@ -89,26 +127,6 @@ class Profile extends React.Component {
               );
             })
           }
-          <input
-            type="number"
-            value={radius}
-            onChange={this.handleRadiusChange}
-          />
-          <Carousel>
-            {
-              profiles.map((profile) => {
-                return(
-                  <div key={profile.id}>
-                    <img src={profile.image_file_name} />
-                    <p><a href={`/profiles/${profile.id}`}>{ profile.name }</a></p>
-                    <p>{ profile.age }</p>
-                    <p> {this.props.activities} </p>
-                    <p>  </p>
-                  </div>
-                );
-              })
-            }
-          </Carousel>
         </div>
       );
     }
