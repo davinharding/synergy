@@ -120,7 +120,7 @@ end
 
 User.all.each do |user|
   Activity.all.each do |activity|
-    UserActivity.find_or_create_by(user: user, activity: activity) if [true, false, false].sample
+    UserActivity.find_or_create_by(user: user, activity: activity, skill_level: ["Beginner", "Intermediate", "Advanced"].sample ) if [true, false, false].sample
   end  
 end
 

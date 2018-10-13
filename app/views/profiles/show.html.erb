@@ -5,7 +5,7 @@
       </li>
     <li class="list-group-item"><%= @profile.name %>, <%= @profile.age %></li>
     <li class="list-group-item"><% @profile.activities.each do |activity| %>
-      <%= activity.activity %>
+      <div><%= activity.activity %> <%= "(#{activity.skill_level_for(@profile.user)})" %></div>
     <% end %></li>
     <li class="list-group-item"> <%= @profile.city %>, <%= @profile.state %></li>
     <li class="list-group-item"><%= @profile.bio %></li>

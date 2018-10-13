@@ -8,7 +8,8 @@ class Profile extends React.Component {
     minAge: 13,
     maxAge: 40,
     profiles:   [],
-    activities: this.props.activities
+    activities: this.props.activities,
+    skillLevel: this.props.skillLevel
   }
 
   handleMinAgeChange = event => {
@@ -84,7 +85,7 @@ class Profile extends React.Component {
                     <a href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
                     <p><a href={`/profiles/${profile.id}`}>{ profile.name }</a></p>
                     <p>{ profile.age }</p>
-                    <p> {this.props.activities}</p>
+                    <p> {this.props.activities} {this.props.skillLevel}</p>
                     <p>  </p>
                   </div>
                 );
