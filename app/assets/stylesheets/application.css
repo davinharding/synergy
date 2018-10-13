@@ -81,3 +81,65 @@ input[type=text], input[type=password]{
   
 
 }
+
+.profile{
+  background-color:rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+  
+  
+}
+
+
+.profile-name {
+  text-align: left;
+  margin: 10px;
+
+
+}
+
+.profile-card {
+ 
+  background: white;
+  border-radius: 12px;
+  margin: 20px;
+  padding-top: 10px;
+  font-size: 35px;
+
+ 
+}
+
+.profile-card :link {
+ color: black;
+
+}
+
+.profile-card :hover {
+  background: white;
+ 
+}
+
+
+.profile-card :active {
+  background: black
+ 
+}
+
+.card-activities {
+
+  font-size: 15px;
+}
+
+input[type=number]{
+  border: none;
+  background-image: url('searchicon.png');
+  border-bottom: 1px solid white;
+  background: none;
+  color: white;
+  font-size: 22px;
+}
+
+.container {
+  background: 100vh;
+}
+
+
