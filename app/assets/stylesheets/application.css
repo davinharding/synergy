@@ -57,6 +57,11 @@ ul {
 .form-group{
   margin-top: -18px;
   background: 100vh;
+  text-align: center;
+}
+
+.form-group-2 {
+  text-align: left;
 }
 
 body{
