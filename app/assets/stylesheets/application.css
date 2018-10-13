@@ -144,8 +144,6 @@ input[type=number]{
   color: white;
   font-size: 22px;
   width: 1.5em;
-  margin-left: .5em;
-  margin-right: .5em;
 }
 
 .name {
@@ -159,6 +157,8 @@ input[type=number]{
 label {
   color: white;
   font-size: 1.3em;
+  margin-left: .3em;
+  margin-right: .3em;
 }
 
 
