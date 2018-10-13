@@ -1,15 +1,17 @@
-<div class="card" >
-  <ul class="list-group">
-      <li class="list-group-item">
-        <%= image_tag @profile.image_file_name %>
+<div class="card" style="width: auto; height: auto;" >
+    <img class="card-img-top">
+  <div class="card-body">
+    <ul class="list-group">
+    <li class="list-group-item-action">
+      <%= image_tag @profile.image_file_name %>
       </li>
-    <li class="list-group-item"><%= @profile.name %>, <%= @profile.age %></li>
-    <li class="list-group-item"><% @profile.activities.each do |activity| %>
+    <li class="list-group-item-action"><%= @profile.name %></li>
+    <li class="list-group-item-action"><%= @profile.age %></li>
+    <li class="list-group-item-action"><% @profile.activities.each do |activity| %>
       <%= activity.activity %>
     <% end %></li>
-    <li class="list-group-item"> <%= @profile.city %>, <%= @profile.state %></li>
-    <li class="list-group-item"><%= @profile.bio %></li>
+    <li class="list-group-item-action"><%= @profile.city %>, <%= @profile.state %></li>
+    <li class="list-group-item-action"><%= @profile.bio %></li>
+    <li class="list-group-item-action active"><%= link_to "Chat with #{@profile.name}", profile_messages_path(@profile) %></li>
   </ul>
 </div>
-
-<%= link_to "Chat with #{@profile.name}", profile_messages_path(@profile) %>

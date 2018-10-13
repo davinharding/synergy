@@ -4,28 +4,35 @@
     <i class="fas fa-user-circle" style= "font-size: 25px;"></i>
     <%= form.text_field :name , placeholder:"Name"%>
   </div>
+
   <div class="form-group">
     <i class="fas fa-home" style= "font-size: 25px;"></i>
     <%= form.text_field :street, placeholder:"Address" %>
   </div>
+
   <div class="form-group">
   <i class="fas fa-city" style= "font-size: 25px;"></i>
     <%= form.text_field :city, placeholder:"City" %>
   </div>
+
   <div class="form-group">
    <i class="fas fa-home" style="font-size: 25px;visibility:hidden;"></i>
    <%= form.text_field :state, placeholder:"State" %>
   </div>
+
 <br>
+
     <div class="form-group">
-      <%= form.label :age %>
-      <%= select_tag(:gender, '<option value="1">Lisbon</option>...') %>
-      <%= form.label :gender %>
-      <%= select_tag(:gender, '<option value="1">Lisbon</option>...') %>
+      <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+      <%= form.text_field :age, placeholder:"Age" %>
     </div>
-  
+    <div>
+      <i class="fa fa-id-card" aria-hidden="true"></i>
+      <%= form.text_field :gender, placeholder: "Gender" %>
+    </div>
+
     <div class="form-group">
-     
+
     </div>
  <h2>What?</h2>
   <div class="form-group 2">
@@ -43,10 +50,12 @@
     <% end %>
     </ul>
   </div>
+
   <div class="form-group">
     <%= form.label :bio %>
     <%= form.text_area :bio %>
   </div>
+
   <%= form.hidden_field :user_id, value: current_user.id %>
   <%= submit_tag("Submit") %>
   <% end %>
