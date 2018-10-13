@@ -87,9 +87,8 @@ input[type=text], input[type=password]{
   
 }
 
-
 .profile-name {
-  text-align: left;
+  /* text-align: left; */
   margin: 10px;
 
 
@@ -127,6 +126,11 @@ input[type=text], input[type=password]{
   font-size: 15px;
 }
 
+.synergy {
+  font-size: 2.5em;
+  margin-top: .5em;
+}
+
 input[type=number]{
   border: none;
   background-image: url('searchicon.png');
@@ -134,10 +138,22 @@ input[type=number]{
   background: none;
   color: white;
   font-size: 22px;
+  width: 1.5em;
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+.name {
+  color: black;
 }
 
 .container {
   background: 100vh;
+}
+
+label {
+  color: white;
+  font-size: 1.3em;
 }
 
 

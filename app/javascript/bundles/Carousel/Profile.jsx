@@ -66,68 +66,66 @@ class Profile extends React.Component {
       const { profiles, minAge, maxAge, activities, radius } = this.state;
       return (
         <div className="profile">
-          <p>{profiles.length} Synergies!</p>
+          <label class="synergy">{profiles.length} Synergies!</label>
           <Carousel
             slideIndex={1}
             swiping={true}
             decorators={[]}
-            renderBottomLeftControls={({ previousSlide }) => (
-              <button onClick={previousSlide}>Previous</button>
-            )}
-            renderBottomRightControls={({ nextSlide }) => (
-              <button onClick={nextSlide}>Next</button>
-            )}
           >
             {
               profiles.map((profile) => {
                 return(
                   <div className="profile-card" key={profile.id}>
                     <div className ="photo">
-                      <a href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
-                      <p className="profile-name"><a href={`/profiles/${profile.id}`}>{ profile.name }{ profile.age }</a></p>
+                      <a class="name" href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
+                      <p className="profile-name"><a href={`/profiles/${profile.id}`}>{`${ profile.name }, ${ profile.age }`}</a></p>
                     </div> 
                   </div>
                 );
               })
             }
           </Carousel>
-          {/* <label for="age range">Age Range: </label> */}
-          <input
-            input 
-            maxlength="10"
-            type="number"
-            value={minAge}
-            onChange={this.handleMinAgeChange}
-          />
-          <label for="to"> to </label>
-          <input
-            type="number"
-            value={maxAge}
-            onChange={this.handleMaxAgeChange}
-           
-          />
-          
-          <label for="radius">Radius: </label>
-          <input
-            type="number"
-            value={radius}
-            onChange={this.handleRadiusChange}
-          />
-          <span> mi</span>
+          <div>
           {
             this.props.activities.map((activity) => {
               return(
-                <div key={activity}>
+                <span key={activity}>
                   <input
                     type="checkbox"
                     checked={activities.includes(activity)}
                     onChange={ () => { this.handleActivityChange(activity, !activities.includes(activity))} }
                   />
                   <label>{activity}</label>
-                </div>
+                </span>
               );
             })
           }
+          </div>
+          <label for="age range">Age Range: </label>
+          <input
+            class="toggle"
+            size="10"
+            type="number"
+            value={minAge}
+            onChange={this.handleMinAgeChange}
+          />
+          <label for="to"> to </label>
+          <input
+            className="toggle"
+            type="number"
+            value={maxAge}
+            onChange={this.handleMaxAgeChange}
+          />
+          <div>
+          <label for="radius">Radius: </label>
+          <input
+            className="toggle"
+            type="number"
+            value={radius}
+            onChange={this.handleRadiusChange}
+          />
+          <label> mi</label>
+          </div>
         </div>
       );
     }
