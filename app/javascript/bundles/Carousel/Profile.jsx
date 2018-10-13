@@ -68,7 +68,7 @@ class Profile extends React.Component {
         <div className="profile">
           <label class="synergy">{profiles.length} Synergies!</label>
           <Carousel
-            slideIndex={1}
+            // slideIndex={1}
             swiping={true}
             decorators={[]}
           >
@@ -78,7 +78,7 @@ class Profile extends React.Component {
                   <div className="profile-card" key={profile.id}>
                     <div className ="photo">
                       <a class="name" href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
-                      <p className="profile-name"><a href={`/profiles/${profile.id}`}>{`${ profile.name }, ${ profile.age }`}</a></p>
+                      <p className="profile-name">{`${ profile.name }, ${ profile.age }`}</p>
                     </div> 
                   </div>
                 );
