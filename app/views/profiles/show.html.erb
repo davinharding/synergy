@@ -5,10 +5,9 @@
     <li class="list-group-item-action">
       <%= image_tag @profile.image_file_name %>
       </li>
-    <li class="list-group-item-action"><%= @profile.name %></li>
-    <li class="list-group-item-action"><%= @profile.age %></li>
-    <li class="list-group-item-action"><% @profile.activities.each do |activity| %>
-      <%= activity.activity %>
+    <li class="list-group-item"><%= @profile.name %>, <%= @profile.age %></li>
+    <li class="list-group-item"><% @profile.activities.each do |activity| %>
+      <div><%= activity.activity %> <%= "(#{activity.skill_level_for(@profile.user)})" %></div>
     <% end %></li>
     <li class="list-group-item-action"><%= @profile.city %>, <%= @profile.state %></li>
     <li class="list-group-item-action"><%= @profile.bio %></li>

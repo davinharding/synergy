@@ -8,7 +8,8 @@ class Profile extends React.Component {
     minAge: 13,
     maxAge: 40,
     profiles:   [],
-    activities: this.props.activities
+    activities: this.props.activities,
+    skillLevel: this.props.skillLevel
   }
 
   
@@ -77,18 +78,14 @@ class Profile extends React.Component {
               <button onClick={nextSlide}>Next</button>
             )}
           >
-            >
             {
               profiles.map((profile) => {
                 return(
                   <div className="profile-card" key={profile.id}>
-                   <div className ="photo"><a href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
-                    <p className="profile-name"><a href={`/profiles/${profile.id}`}>{ profile.name }{ profile.age }</a></p>
+                    <div className ="photo">
+                      <a href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
+                      <p className="profile-name"><a href={`/profiles/${profile.id}`}>{ profile.name }{ profile.age }</a></p>
                     </div> 
-                    {/* <p className="card-activities"> <ul>{this.props.activities.map(activity=><li>{activity}</li>)}</ul></p>
-                     */}
-                    
-                    <p>  </p>
                   </div>
                 );
               })
