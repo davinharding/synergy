@@ -65,8 +65,8 @@ class Profile extends React.Component {
       return (
         <div className="profile">
           <p>{profiles.length} Synergies!</p>
-          <Carousel 
-            slideIndex={1} 
+          <Carousel
+            slideIndex={1}
             swiping={true}
             decorators={[]}
             renderBottomLeftControls={({ previousSlide }) => (
