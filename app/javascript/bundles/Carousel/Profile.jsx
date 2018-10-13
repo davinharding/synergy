@@ -12,6 +12,7 @@ class Profile extends React.Component {
     skillLevel: this.props.skillLevel
   }
 
+  
   handleMinAgeChange = event => {
     const minAge = event.target.value;
     const { maxAge, activities, radius } = this.state;
@@ -66,8 +67,8 @@ class Profile extends React.Component {
       return (
         <div className="profile">
           <p>{profiles.length} Synergies!</p>
-          <Carousel 
-            slideIndex={1} 
+          <Carousel
+            slideIndex={1}
             swiping={true}
             decorators={[]}
             renderBottomLeftControls={({ previousSlide }) => (
@@ -80,18 +81,20 @@ class Profile extends React.Component {
             {
               profiles.map((profile) => {
                 return(
-                  <div key={profile.id}>
-                    <a href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
-                    <p><a href={`/profiles/${profile.id}`}>{ profile.name }</a></p>
-                    <p>{ profile.age }</p>
+                  <div className="profile-card" key={profile.id}>
+                    <div className ="photo">
+                      <a href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
+                      <p className="profile-name"><a href={`/profiles/${profile.id}`}>{ profile.name }{ profile.age }</a></p>
+                    </div> 
                   </div>
                 );
               })
             }
           </Carousel>
-          <label for="age range">Age Range: </label>
+          {/* <label for="age range">Age Range: </label> */}
           <input
-            input size="10"
+            input 
+            maxlength="10"
             type="number"
             value={minAge}
             onChange={this.handleMinAgeChange}
@@ -101,9 +104,9 @@ class Profile extends React.Component {
             type="number"
             value={maxAge}
             onChange={this.handleMaxAgeChange}
-            width="20"
+           
           />
-          <span></span>
+          
           <label for="radius">Radius: </label>
           <input
             type="number"
