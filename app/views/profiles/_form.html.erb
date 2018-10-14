@@ -20,20 +20,13 @@
    <%= form.text_field :state, placeholder:"State" %>
   </div>
   <div class="form-group">
-    <%= form.file_field :image %>
+    <i class="fa fa-birthday-cake" aria-hidden="true" style= "font-size: 25px;"></i>
+    <%= form.text_field :age, placeholder:"Age" %>
   </div>
-    <div class="form-group">
-      <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-      <%= form.text_field :age, placeholder:"Age" %>
-    </div>
-    <div>
-      <i class="fa fa-id-card" aria-hidden="true"></i>
-      <%= form.text_field :gender, placeholder: "Gender" %>
-    </div>
-
-    <div class="form-group">
-
-    </div>
+  <div>
+    <i class="fa fa-id-card" aria-hidden="true" style= "font-size: 25px;"></i>
+    <%= form.text_field :gender, placeholder: "Gender" %>
+  </div>
   <div class="form-group-2">
   <ul>
     <% @activities.each do |activity| %>
@@ -49,12 +42,15 @@
     <% end %>
     </ul>
   </div>
-
+  <label class="bio">
+    Bio:
+  </label>
   <div class="form-group">
-    <%= form.label :bio %>
     <%= form.text_area :bio %>
   </div>
-
+  <div class="form-group">
+    <%= form.file_field :image %>
+  </div>
   <%= form.hidden_field :user_id, value: current_user.id %>
   <%= submit_tag("Submit") %>
   <% end %>

@@ -1,4 +1,4 @@
-<h1>Chat with <%= @profile.name %>!</h1>
+<h3>Chat with <%= link_to @profile.name, profile_path(@profile) %></h3>
 
 <span id="channel" style="display:none;" data-channel="<%= @channel %>"></span>
 
