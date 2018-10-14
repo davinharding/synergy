@@ -77,7 +77,13 @@ span.bio {
 }
 
 .form-group-2 {
-  text-align: left;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-group-2 {
+    text-align: left;
+  }
 }
 
 body {
@@ -182,21 +188,23 @@ label {
 }
 
 
-.city-state{
+.city-state {
 
   font-size: 22px;
 }
+
 .show-name {
 
   font-size: 30px;
 }
 
 .show-bio {
-margin-top: 10px;
+  margin-top: 10px;
 
 }
-.img_preview{
- size: 40px;
+
+.img_preview {
+  size: 40px;
 }
 
 
@@ -205,12 +213,12 @@ margin-top: 10px;
 
   border-radius: 12px;
   background: white;
-  border:none; 
-padding: 10px;
-  
+  border: none;
+  padding: 10px;
+
 }
 
- 
+
 
 .show-profile {
   background-color: rgba(0, 0, 0, 0.5);
