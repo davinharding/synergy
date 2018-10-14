@@ -68,7 +68,7 @@ class Profile extends React.Component {
         <div className="profile">
           <label class="synergy">{profiles.length} Synergies!</label>
           <Carousel
-            // slideIndex={1}
+            slideIndex={1}
             swiping={true}
             decorators={[]}
           >

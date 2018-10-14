@@ -38,6 +38,7 @@ ul {
   text-align: center;
   margin-left: 12px;
   margin-bottom: 45px;
+  margin-top: 12em;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
