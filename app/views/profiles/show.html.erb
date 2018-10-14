@@ -2,17 +2,12 @@
 <div class="show-card" style="width: auto; height: auto;" >
   <img class="card-img-top">
   <div class="card-body">
-
       <div class="show-image">
-        
-      
-      <%= image_tag(@profile.image_file_name, :style => "width:150px;") %>
-      
+        <%= image_tag(@profile.image_file_name, :style => "width:150px;") %>
       </div>
       <li class="show-name"><%= @profile.name %>, <%= @profile.age %>
       <p class="city-state"> <%= @profile.city %>, <%= @profile.state %></p>
       </li>
-      
       <div class="activities">
       <h6>Activities</h6>
         <% @profile.activities.each do |activity| %>
@@ -30,5 +25,5 @@
       </li>
     </ul>
   </div>
-</div>
+ </div>
 </div>
