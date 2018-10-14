@@ -118,14 +118,13 @@ class Profile extends React.Component {
           onChange={this.handleMaxAgeChange}
         />
         <div>
-          <label for="radius">Radius: </label>
           <input
             className="toggle"
             type="number"
             value={radius}
             onChange={this.handleRadiusChange}
           />
-          <label> mi</label>
+          <label> miles away</label>
         </div>
       </div>
     );
