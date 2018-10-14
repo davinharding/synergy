@@ -180,3 +180,42 @@ label {
   margin-left: .3em;
   margin-right: .3em;
 }
+
+
+.city-state{
+
+  font-size: 22px;
+}
+.show-name {
+
+  font-size: 30px;
+}
+
+.show-bio {
+margin-top: 10px;
+
+}
+.img_preview{
+ size: 40px;
+}
+
+
+
+.show-card {
+
+  border-radius: 12px;
+  background: white;
+  border:none; 
+padding: 10px;
+  
+}
+
+ 
+
+.show-profile {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 32px;
+  margin: 15px;
+  border-radius: 12px;
+
+}
