@@ -41,6 +41,10 @@ ul {
   margin-top: 12em;
 }
 
+span.bio {
+  margin-bottom: .5em;
+}
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: rgba(0, 0, 0, 0.37);
@@ -164,6 +168,10 @@ input[type=number] {
 
 .container {
   background: 100vh;
+}
+
+label.bio {
+  margin-bottom: 1em;
 }
 
 label {
