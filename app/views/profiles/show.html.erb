@@ -1,26 +1,34 @@
-<div class="card" style="width: auto; height: auto;" >
+<div class="show-profile">
+<div class="show-card" style="width: auto; height: auto;" >
   <img class="card-img-top">
   <div class="card-body">
-    <ul class="list-group">
-      <li class="list-group-item-action">
-        <%= image_tag @profile.image_file_name %>
+
+      <div class="show-image">
+        
+      
+      <%= image_tag(@profile.image_file_name, :style => "width:150px;") %>
+      
+      </div>
+      <li class="show-name"><%= @profile.name %>, <%= @profile.age %>
+      <p class="city-state"> <%= @profile.city %>, <%= @profile.state %></p>
       </li>
-      <li class="list-group-item"><%= @profile.name %>, <%= @profile.age %></li>
-      <li class="list-group-item">
+      
+      <div class="activities">
+      <h6>Activities</h6>
         <% @profile.activities.each do |activity| %>
           <%= activity.activity %> 
           <%= "(#{activity.skill_level_for(@profile.user)})" %>
         <% end %>
-      </li>
-      <li class="list-group-item-action">
-        <%= @profile.city %>, <%= @profile.state %>
-      </li>
-      <li class="list-group-item-action">
+      </div>
+   
+      <div class="show-bio">
+      <h6>Bio</h6>
         <%= @profile.bio %>
-      </li>
+      </div>
       <li class="list-group-item-action active">
         <%= link_to "Chat with #{@profile.name}", profile_messages_path(@profile) %>
       </li>
     </ul>
   </div>
+</div>
 </div>
