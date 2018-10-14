@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default class Messages extends Component {
 
-  constructor(){
+  constructor() {
     super()
     window.messages = this;
     this.state = { messages: [], message: '' }
@@ -23,13 +23,13 @@ export default class Messages extends Component {
     const { profile } = this.props;
     const { message } = this.state;
     axios.post(`/profiles/${profile.id}/messages.json`, {
-      message: {content: message}
+      message: { content: message }
     }, {
-      headers: { 'Content-Type': 'application/json' }
-    }).then((response) => {
-      console.log(response.data)
-      this.fetchMessages();
-    })
+        headers: { 'Content-Type': 'application/json' }
+      }).then((response) => {
+        console.log(response.data)
+        this.fetchMessages();
+      })
   }
 
   handleMessageChange = (e) => {
@@ -37,17 +37,17 @@ export default class Messages extends Component {
     this.setState({ message });
   }
 
-  render(){
+  render() {
     const { messages } = this.state;
-    return(
-      <div style={{height: '300px', overflowY: 'scroll'}}>
+    return (
+      <div style={{ height: '300px', overflowY: 'scroll' }}>
         <ul>
           {
             messages.map((message) => {
-              return(
+              return (
                 <li key={message.id}>
+                  {`(${message.sender.name})>  `}
                   {message.content}
-                  ({message.sender.name})
                 </li>
               )
             })
@@ -61,13 +61,14 @@ export default class Messages extends Component {
             className="form-control"
             value={this.state.message}
             onChange={this.handleMessageChange}
+            placeholder="Type here:"
           />
         </form>
       </div>
     )
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchMessages();
   }
 

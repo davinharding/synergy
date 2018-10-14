@@ -7,12 +7,11 @@ class Profile extends React.Component {
     radius: 10,
     minAge: 13,
     maxAge: 40,
-    profiles:   [],
-    activities: this.props.activities,
-    skillLevel: this.props.skillLevel
+    profiles: [],
+    activities: this.props.activities
   }
 
-  
+
   handleMinAgeChange = event => {
     const minAge = event.target.value;
     const { maxAge, activities, radius } = this.state;
@@ -50,9 +49,9 @@ class Profile extends React.Component {
 
   handleActivityChange = (activity, active) => {
     let { activities, minAge, maxAge, radius } = this.state;
-    if(active){
+    if (active) {
       activities.push(activity);
-    }else{
+    } else {
       activities = activities.filter(a => a !== activity)
     }
     this.fetchProfiles(minAge, maxAge, activities, radius);
@@ -62,61 +61,63 @@ class Profile extends React.Component {
     const { minAge, maxAge, activities, radius } = this.state;
     this.fetchProfiles(minAge, maxAge, activities, radius);
   }
-    render() {
-      const { profiles, minAge, maxAge, activities, radius } = this.state;
-      return (
-        <div className="profile">
-          <label class="synergy">{profiles.length} Synergies!</label>
-          <Carousel
-            slideIndex={1}
-            swiping={true}
-            decorators={[]}
-          >
-            {
-              profiles.map((profile) => {
-                return(
-                  <div className="profile-card" key={profile.id}>
-                    <div className ="photo">
-                      <a class="name" href={`/profiles/${profile.id}`}><img src={profile.image_file_name} width="300" height="300"/></a>
-                      <p className="profile-name">{`${ profile.name }, ${ profile.age }`}</p>
-                    </div> 
+  render() {
+    const { profiles, minAge, maxAge, activities, radius } = this.state;
+    return (
+      <div className="profile">
+        <label class="synergy">{profiles.length} Synergies!</label>
+        <Carousel
+          slideIndex={1}
+          swiping={true}
+          decorators={[]}
+        >
+          {
+            profiles.map((profile) => {
+              return (
+                <div className="profile-card" key={profile.id}>
+                  <div className="photo">
+                    <a class="name" href={`/profiles/${profile.id}`}>
+                      <img src={profile.image_file_name} width="300" height="300" />
+                    </a>
+                    <p className="profile-name">{`${profile.name}, ${profile.age}`}</p>
                   </div>
-                );
-              })
-            }
-          </Carousel>
-          <div>
+                </div>
+              );
+            })
+          }
+        </Carousel>
+        <div>
           {
             this.props.activities.map((activity) => {
-              return(
+              return (
                 <span key={activity}>
                   <input
                     type="checkbox"
                     checked={activities.includes(activity)}
-                    onChange={ () => { this.handleActivityChange(activity, !activities.includes(activity))} }
+                    onChange={() => { this.handleActivityChange(activity, !activities.includes(activity)) }}
                   />
                   <label>{activity}</label>
                 </span>
               );
             })
           }
-          </div>
-          <label for="age range">Age Range: </label>
-          <input
-            class="toggle"
-            size="10"
-            type="number"
-            value={minAge}
-            onChange={this.handleMinAgeChange}
-          />
-          <label for="to"> to </label>
-          <input
-            className="toggle"
-            type="number"
-            value={maxAge}
-            onChange={this.handleMaxAgeChange}
-          />
-          <div>
+        </div>
+        <label for="age range">Age Range: </label>
+        <input
+          class="toggle"
+          size="10"
+          type="number"
+          value={minAge}
+          onChange={this.handleMinAgeChange}
+        />
+        <label for="to"> to </label>
+        <input
+          className="toggle"
+          type="number"
+          value={maxAge}
+          onChange={this.handleMaxAgeChange}
+        />
+        <div>
           <label for="radius">Radius: </label>
           <input
             className="toggle"
@@ -125,10 +126,10 @@ class Profile extends React.Component {
             onChange={this.handleRadiusChange}
           />
           <label> mi</label>
-          </div>
         </div>
-      );
-    }
+      </div>
+    );
+  }
 }
 
 export default Profile
