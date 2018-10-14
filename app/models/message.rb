@@ -1,7 +1,6 @@
 class Message < ApplicationRecord
   belongs_to :sender, class_name: "Profile"
   belongs_to :recipient, class_name: "Profile"
-
   after_create_commit :broadcast_message
 
   scope :between, ->  (profile_1, profile_2) do
@@ -20,7 +19,7 @@ class Message < ApplicationRecord
   end
 
   def broadcast_message
-    ActionCable.server.broadcast(action_cable_channel, {})
+    ActionCable.server.broadcast(action_cable_channel, message: self.content)
   end
 
 end

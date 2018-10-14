@@ -21,6 +21,11 @@
     <%if user_signed_in? %>
       <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <%= link_to image_tag("synergylogo.png", :size => "110x18" ), root_path, class: "navbar-brand" %>
+        <%= react_component 'Notifications',
+          props: {
+            messages: current_user.profile.notifications.count,
+          } 
+        %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

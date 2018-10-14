@@ -7,6 +7,8 @@ class MessagesController < ApplicationController
       sender:   current_user.profile,
       content:  message_params[:content]
     )
+    Notification.create(recipient: @profile, actor: current_user.profile, action: "messaged")  
+
     render json: message
   end
 
