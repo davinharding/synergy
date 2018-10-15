@@ -120,7 +120,7 @@ class Profile extends React.Component {
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
-        <label>Age Range: </label>
+        <label>Age: </label>
         <input
           className="toggle"
           size="10"
