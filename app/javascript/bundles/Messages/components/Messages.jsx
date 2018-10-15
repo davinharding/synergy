@@ -62,7 +62,7 @@ export default class Messages extends Component {
             className="form-control"
             value={this.state.message}
             onChange={this.handleMessageChange}
-            placeholder="Type here:"
+            placeholder="[Type here]"
           />
         </form>
       </div>

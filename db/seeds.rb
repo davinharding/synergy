@@ -102,11 +102,12 @@ n = 1
     email: Faker::Internet.free_email,
     password: "asdfasdf",
   )
-  Profile.find_or_create_by(
+  profile = Profile.find_or_create_by(
     name: Faker::Name.female_first_name,
     age: (13..65).to_a.sample,
     user_id: n,
     street: addresses.sample,
+    gender: "female",
     city: "Miami",
     state: "Florida",
     image_file_name: response.parsed_response['results'].last['picture']['large'],
@@ -115,6 +116,9 @@ n = 1
       Faker::HarryPotter.quote
   ].sample
   )
+  image = open(response.parsed_response['results'].last['picture']['large'])
+  profile.image = image
+  profile.save!
   n += 1
 end
 
@@ -125,11 +129,12 @@ end
     email: Faker::Internet.free_email,
     password: "asdfasdf",
   )
-  Profile.find_or_create_by(
+  profile = Profile.find_or_create_by(
     name: Faker::Name.male_first_name,
     age: (13..65).to_a.sample,
     user_id: n,
     street: addresses.sample,
+    gender: "male",
     city: "Miami",
     state: "Florida",
     bio: [
@@ -140,7 +145,6 @@ end
   image = open(response.parsed_response['results'].last['picture']['large'])
   profile.image = image
   profile.save!
-
   n += 1
 end
 
