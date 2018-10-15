@@ -80,15 +80,20 @@ span.bio {
   text-align: center;
 }
 
+select.toggle {
+  color: black;
+}
+
 @media only screen and (max-width: 600px) {
   .form-group-2 {
     text-align: left;
   }
+
+  select.toggle {
+    color: white;
+  }
 }
 
-select.toggle {
-  color: white;
-}
 
 body {
   background: rgb(247, 161, 0);
