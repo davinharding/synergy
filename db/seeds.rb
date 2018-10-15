@@ -8,6 +8,7 @@
 require 'faker'
 require 'httparty'
 require 'json'
+require 'open-uri'
 url = 'https://randomuser.me/api/'
 response = HTTParty.get(url)
 
@@ -34,7 +35,7 @@ n = 1
     email: Faker::Internet.free_email,
     password: "asdfasdf",
   )
-  Profile.find_or_create_by(
+  profile = Profile.find_or_create_by(
     name: Faker::Name.first_name,
     age: (13..65).to_a.sample,
     user_id: n,
@@ -109,13 +110,16 @@ n = 1
     ].sample,
     city: "Miami",
     state: "Florida",
-    image_file_name: response.parsed_response['results'].last['picture']['large'],
     bio: [
       Faker::SiliconValley.quote,
       Faker::MichaelScott.quote,
       Faker::HarryPotter.quote
   ].sample
   )
+  image = open(response.parsed_response['results'].last['picture']['large'])
+  profile.image = image
+  profile.save!
+
   n += 1
 end
 
