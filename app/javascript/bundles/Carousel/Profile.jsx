@@ -41,7 +41,7 @@ class Profile extends React.Component {
     let activityParams = []
     activities.forEach((activity) => { activityParams.push(`activity[]=${activity}`) })
     activityParams = activityParams.join("&")
-    axios.get(`/profiles.json?${activityParams}&min_age=${minAge}&max_age=${maxAge}&radius=${radius}$gender=${gender}`)
+    axios.get(`/profiles.json?${activityParams}&min_age=${minAge}&max_age=${maxAge}&radius=${radius}&gender=${gender}`)
       .then((response) => {
         console.log(response.data.length)
         this.setState({
@@ -112,13 +112,14 @@ class Profile extends React.Component {
         </div>
         <label>Gender: </label>
         <select
-          // className="toggle"
+          className="toggle"
           type="text"
           value={gender}
           onChange={this.handleGenderChange}
         >
-          <option value="male">male</option>
-          <option value="female">female</option>
+          <option value="">Both</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
         <label>Age Range: </label>
         <input

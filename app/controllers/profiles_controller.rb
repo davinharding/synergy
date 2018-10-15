@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
                         current_user.profile.longitude
                       ], params[:radius]
                     ).distinct
+        @profiles = @profiles.where.not(id: current_user.profile.id)
         @profiles = @profiles.min_age(params[:min_age]) if params[:min_age].present?
         @profiles = @profiles.max_age(params[:max_age]) if params[:max_age].present?
         @profiles = @profiles.by_gender(params[:gender]) if params[:gender].present?
