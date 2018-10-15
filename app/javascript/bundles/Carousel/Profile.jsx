@@ -83,9 +83,9 @@ class Profile extends React.Component {
               return (
                 <div className="profile-card" key={profile.id}>
                   <div className="photo">
-                    <a className="name" href={`/profiles/${profile.id}`}>
-                      <img src={profile.image_file_name} width="300" height="300" />
-                    </a>
+                    <p className="name" href={`/profiles/${profile.id}`}>
+                      <img src={profile.image} width="300" height="300" />
+                    </p>
                     <p className="profile-name">{`${profile.name}, ${profile.age}`}</p>
                   </div>
                 </div>

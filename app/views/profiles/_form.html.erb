@@ -49,6 +49,11 @@
     <%= form.text_area :bio %>
   </div>
   <div class="form-group">
+    <% if @profile.image %>
+      <%= image_tag(@profile.image.url(:thumb), size: "50x50")%>
+    <% else %>
+      <%= image_tag('https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png')%>
+    <% end%>
     <%= form.file_field :image %>
   </div>
   <%= form.hidden_field :user_id, value: current_user.id %>
