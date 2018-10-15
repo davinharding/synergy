@@ -8,7 +8,7 @@ class Profile extends React.Component {
     minAge: 13,
     maxAge: 40,
     profiles: [],
-    gender: "female",
+    gender: "",
     activities: this.props.activities
   }
 
