@@ -8,13 +8,13 @@ class Profile extends React.Component {
     minAge: 13,
     maxAge: 40,
     profiles: [],
-    gender: "Both",
+    gender: "female",
     activities: this.props.activities
   }
 
   handleGenderChange = event => {
     const gender = event.target.value;
-    const { maxAge, activities, radius, gender } = this.state;
+    const { minAge, maxAge, activities, radius } = this.state;
     this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
 
@@ -33,11 +33,11 @@ class Profile extends React.Component {
 
   handleRadiusChange = event => {
     const radius = event.target.value;
-    const { minAge, maxAge, activities } = this.state;
+    const { minAge, maxAge, activities, gender } = this.state;
     this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
 
-  fetchProfiles = (minAge, maxAge, activities, radius) => {
+  fetchProfiles = (minAge, maxAge, activities, radius, gender) => {
     let activityParams = []
     activities.forEach((activity) => { activityParams.push(`activity[]=${activity}`) })
     activityParams = activityParams.join("&")
@@ -66,14 +66,14 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { minAge, maxAge, activities, radius } = this.state;
+    const { minAge, maxAge, activities, radius, gender } = this.state;
     this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
   render() {
     const { profiles, minAge, maxAge, activities, radius, gender } = this.state;
     return (
       <div className="profile">
-        <label class="synergy">{profiles.length} Synergies!</label>
+        <label className="synergy">{profiles.length} Synergies!</label>
         <Carousel
           slideIndex={1}
           swiping={true}
@@ -84,7 +84,7 @@ class Profile extends React.Component {
               return (
                 <div className="profile-card" key={profile.id}>
                   <div className="photo">
-                    <a class="name" href={`/profiles/${profile.id}`}>
+                    <a clasNames="name" href={`/profiles/${profile.id}`}>
                       <img src={profile.image_file_name} width="300" height="300" />
                     </a>
                     <p className="profile-name">{`${profile.name}, ${profile.age}`}</p>
@@ -110,23 +110,25 @@ class Profile extends React.Component {
             })
           }
         </div>
-        <label for="gender">Gender: </label>
-        <input
-          class="toggle"
-          size="10"
-          type="number"
+        <label>Gender: </label>
+        <select
+          // className="toggle"
+          type="text"
           value={gender}
           onChange={this.handleGenderChange}
-        />
-        <label for="age range">Age Range: </label>
+        >
+          <option value="male">male</option>
+          <option value="female">female</option>
+        </select>
+        <label>Age Range: </label>
         <input
-          class="toggle"
+          className="toggle"
           size="10"
           type="number"
           value={minAge}
           onChange={this.handleMinAgeChange}
         />
-        <label for="to"> to </label>
+        <label htmlFor="to"> to </label>
         <input
           className="toggle"
           type="number"

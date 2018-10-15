@@ -38,6 +38,7 @@ n = 1
     name: Faker::Name.first_name,
     age: (13..65).to_a.sample,
     user_id: n,
+    gender: [ "male", "female"].sample,
     street: [
       '2727 NW 2nd Ave',
       '251 NW 25th ST',
