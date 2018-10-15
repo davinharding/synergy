@@ -3,7 +3,7 @@
   <img class="card-img-top">
   <div class="card-body">
       <div class="show-image">
-        <%= image_tag(@profile.image_file_name, :style => "width:150px;") %>
+        <%= image_tag(@profile.image.url(:large), :style => "width:150px;") %>
       </div>
       <li class="show-name"><%= @profile.name %>, <%= @profile.age %>
       <p class="city-state"> <%= @profile.city %>, <%= @profile.state %></p>
