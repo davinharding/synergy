@@ -43,7 +43,6 @@ class Profile extends React.Component {
     activityParams = activityParams.join("&")
     axios.get(`/profiles.json?${activityParams}&min_age=${minAge}&max_age=${maxAge}&radius=${radius}&gender=${gender}`)
       .then((response) => {
-        console.log(response.data.length)
         this.setState({
           radius,
           minAge,
@@ -84,7 +83,7 @@ class Profile extends React.Component {
               return (
                 <div className="profile-card" key={profile.id}>
                   <div className="photo">
-                    <a clasNames="name" href={`/profiles/${profile.id}`}>
+                    <a className="name" href={`/profiles/${profile.id}`}>
                       <img src={profile.image_file_name} width="300" height="300" />
                     </a>
                     <p className="profile-name">{`${profile.name}, ${profile.age}`}</p>
