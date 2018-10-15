@@ -58,6 +58,7 @@ export default class Messages extends Component {
         >
           <input
             type="text"
+            id="message"
             className="form-control"
             value={this.state.message}
             onChange={this.handleMessageChange}

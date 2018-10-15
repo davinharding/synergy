@@ -7,11 +7,19 @@ class MessagesController < ApplicationController
       sender:   current_user.profile,
       content:  message_params[:content]
     )
+    Notification.create(recipient: @profile, actor: current_user.profile, action: "messaged")  
+
     render json: message
   end
 
   def index
     @messages = Message.between(@profile, current_user.profile)
+
+    Notification.where(
+      recipient: current_user.profile, 
+      actor: @profile
+    ).update_all(read_at: Time.now)
+
     @channel = "messages:#{[@profile.id, current_user.profile.id].sort.join(':')}"
     respond_to do |format|
       format.html do

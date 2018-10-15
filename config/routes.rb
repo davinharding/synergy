@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :index]
   end
   resources :activities
+  resources :notifications
   get 'hello_world', to: 'hello_world#index'
   devise_for :users
   root 'profiles#index'
