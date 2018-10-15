@@ -23,7 +23,8 @@
         <%= link_to image_tag("synergylogo.png", :size => "110x18" ), root_path, class: "navbar-brand" %>
         <%= react_component 'Notifications',
           props: {
-            messages: current_user.profile.notifications.count,
+            messages: current_user.profile.notifications.unread.count,
+            profiles: current_user.profile.notifications.unread.map(&:actor).uniq
           } 
         %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

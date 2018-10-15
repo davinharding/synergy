@@ -3,6 +3,8 @@ class Notification < ApplicationRecord
   belongs_to :actor, class_name: "Profile"
   after_create_commit :broadcast_message
   
+  scope :unread, -> { where(read_at: nil) }
+
   private
 
   def action_cable_channel

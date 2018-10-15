@@ -14,6 +14,12 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.between(@profile, current_user.profile)
+
+    Notification.where(
+      recipient: current_user.profile, 
+      actor: @profile
+    ).update_all(read_at: Time.now)
+
     @channel = "messages:#{[@profile.id, current_user.profile.id].sort.join(':')}"
     respond_to do |format|
       format.html do
