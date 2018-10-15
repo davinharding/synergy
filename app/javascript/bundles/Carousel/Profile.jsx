@@ -8,33 +8,40 @@ class Profile extends React.Component {
     minAge: 13,
     maxAge: 40,
     profiles: [],
+    gender: "Both",
     activities: this.props.activities
+  }
+
+  handleGenderChange = event => {
+    const gender = event.target.value;
+    const { maxAge, activities, radius, gender } = this.state;
+    this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
 
 
   handleMinAgeChange = event => {
     const minAge = event.target.value;
-    const { maxAge, activities, radius } = this.state;
-    this.fetchProfiles(minAge, maxAge, activities, radius);
+    const { maxAge, activities, radius, gender } = this.state;
+    this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
 
   handleMaxAgeChange = event => {
     const maxAge = event.target.value;
-    const { minAge, activities, radius } = this.state;
-    this.fetchProfiles(minAge, maxAge, activities, radius);
+    const { minAge, activities, radius, gender } = this.state;
+    this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
 
   handleRadiusChange = event => {
     const radius = event.target.value;
     const { minAge, maxAge, activities } = this.state;
-    this.fetchProfiles(minAge, maxAge, activities, radius);
+    this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
 
   fetchProfiles = (minAge, maxAge, activities, radius) => {
     let activityParams = []
     activities.forEach((activity) => { activityParams.push(`activity[]=${activity}`) })
     activityParams = activityParams.join("&")
-    axios.get(`/profiles.json?${activityParams}&min_age=${minAge}&max_age=${maxAge}&radius=${radius}`)
+    axios.get(`/profiles.json?${activityParams}&min_age=${minAge}&max_age=${maxAge}&radius=${radius}$gender=${gender}`)
       .then((response) => {
         console.log(response.data.length)
         this.setState({
@@ -42,27 +49,28 @@ class Profile extends React.Component {
           minAge,
           maxAge,
           activities,
+          gender,
           profiles: response.data
         })
       })
   }
 
   handleActivityChange = (activity, active) => {
-    let { activities, minAge, maxAge, radius } = this.state;
+    let { activities, minAge, maxAge, radius, gender } = this.state;
     if (active) {
       activities.push(activity);
     } else {
       activities = activities.filter(a => a !== activity)
     }
-    this.fetchProfiles(minAge, maxAge, activities, radius);
+    this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
 
   componentDidMount() {
     const { minAge, maxAge, activities, radius } = this.state;
-    this.fetchProfiles(minAge, maxAge, activities, radius);
+    this.fetchProfiles(minAge, maxAge, activities, radius, gender);
   }
   render() {
-    const { profiles, minAge, maxAge, activities, radius } = this.state;
+    const { profiles, minAge, maxAge, activities, radius, gender } = this.state;
     return (
       <div className="profile">
         <label class="synergy">{profiles.length} Synergies!</label>
@@ -102,6 +110,14 @@ class Profile extends React.Component {
             })
           }
         </div>
+        <label for="gender">Gender: </label>
+        <input
+          class="toggle"
+          size="10"
+          type="number"
+          value={gender}
+          onChange={this.handleGenderChange}
+        />
         <label for="age range">Age Range: </label>
         <input
           class="toggle"
