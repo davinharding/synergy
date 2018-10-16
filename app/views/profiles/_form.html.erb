@@ -52,7 +52,7 @@
     <% if @profile.image %>
       <%= image_tag(@profile.image.url(:thumb), size: "50x50")%>
     <% else %>
-      <%= image_tag('https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png')%>
+      <img src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png'/>
     <% end%>
     <%= form.file_field :image %>
   </div>
