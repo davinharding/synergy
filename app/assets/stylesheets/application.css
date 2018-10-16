@@ -13,8 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+.slider-slide {
+  display: flex !important;
+  justify-content: center;
+}
+
+
 ul {
   list-style-type: none;
+}
+
+div.profile-card {
+  width: 320px;
 }
 
 .activityDropdown {
