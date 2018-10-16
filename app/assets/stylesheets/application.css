@@ -13,6 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.slider-slide {
+  display: flex !important;
+  justify-content: center;
+}
+
 ul {
   list-style-type: none;
 }
@@ -94,6 +100,9 @@ select.toggle {
   }
 }
 
+div.profile-card {
+  width: 320px;
+}
 
 body {
   background: rgb(247, 161, 0);
