@@ -9,7 +9,7 @@ export default class Notifications extends Component {
 
   fetchNotifications() {
     axios.get(`/notifications.json`).then((response) => {
-      console.log(response.data)
+
       this.setState({
         messages: response.data.notifications,
         profiles: response.data.profiles
