@@ -7,23 +7,23 @@ export default class Notifications extends Component {
     profiles: this.props.profiles
   };
 
-  fetchNotifications() {
-    axios.get(`/notifications.json`).then((response) => {
+  // fetchNotifications() {
+  //   axios.get(`/notifications.json`).then((response) => {
 
-      this.setState({
-        messages: response.data.notifications,
-        profiles: response.data.profiles
-      })
-    })
-  }
+  //     this.setState({
+  //       messages: response.data.notifications,
+  //       profiles: response.data.profiles
+  //     })
+  //   })
+  // }
 
-  componentDidMount() {
-    this.interval = setInterval(() => this.fetchNotifications(), 1000);
-  }
+  // componentDidMount() {
+  //   this.interval = setInterval(() => this.fetchNotifications(), 1000);
+  // }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
 
   render() {
     return (

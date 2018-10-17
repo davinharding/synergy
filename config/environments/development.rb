@@ -35,6 +35,23 @@ Rails.application.configure do
   config.active_storage.service = :local
   # Paperclip.options[:command_path] = "/usr/local/bin/convert"
 
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: "synergy.dokku-hosted.thruhere.net",
+    s3_credentials: {
+      bucket: ENV["S3_BUCKET_NAME"],
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+    },
+    s3_region: ENV["AWS_REGION"],
+    s3_protocol: :https,
+    ssl_verify_peer: false,
+    s3_options: {
+      endpoint: "https://synergy.dokku-hosted.thruhere.net/"
+    },
+    # url: ":s3_alias_url",
+    path: "/devimages/:class/:attachment/:style/:filename",
+  }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
