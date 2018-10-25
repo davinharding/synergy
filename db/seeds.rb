@@ -110,7 +110,7 @@ n = 1
     gender: "female",
     city: "Miami",
     state: "Florida",
-    image_file_name: response.parsed_response['results'].last['picture']['large'],
+    # image_file_name: response.parsed_response['results'].last['picture']['large'],
     bio: [
       Faker::MichaelScott.quote,
       Faker::HarryPotter.quote

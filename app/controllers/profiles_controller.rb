@@ -20,7 +20,9 @@ class ProfilesController < ApplicationController
         @profiles = @profiles.by_gender(params[:gender]) if params[:gender].present?
         @profiles = @profiles.by_activity(params[:activity])
 
-        render json: @profiles.map{|profile| profile.attributes.merge(image: profile.image.url(:medium))}
+        render json: @profiles 
+        
+        # .map{|profile| profile.attributes.merge(image: profile.image.url(:medium))}
       end
     end
   end
@@ -37,6 +39,9 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(profile_params)
+    @profile.image.attach(params[:image])
+    puts "======================="
+    p params[:image]
     @profile.save
     params[:profile][:activity][:activity].each do |activity, attributes|
       if attributes[:checked] == "true"
@@ -65,6 +70,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
+    # @profile.image.attach(params[:image])
     @profile.update(profile_params)
     params[:profile][:activity][:activity].each do |activity, attributes|
       if attributes[:checked] == "true"

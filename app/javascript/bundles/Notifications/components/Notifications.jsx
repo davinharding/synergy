@@ -17,13 +17,13 @@ export default class Notifications extends Component {
     })
   }
 
-  componentDidMount() {
-    this.interval = setInterval(() => this.fetchNotifications(), 1000);
-  }
+  // componentDidMount() {
+  //   this.interval = setInterval(() => this.fetchNotifications(), 1000);
+  // }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
 
   render() {
     return (
