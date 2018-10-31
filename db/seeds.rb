@@ -110,14 +110,13 @@ n = 1
     gender: "female",
     city: "Miami",
     state: "Florida",
-    # image_file_name: response.parsed_response['results'].last['picture']['large'],
     bio: [
       Faker::MichaelScott.quote,
       Faker::HarryPotter.quote
   ].sample
   )
   image = open(response.parsed_response['results'].last['picture']['large'])
-  profile.image = image
+  profile.image.attach(image)
   profile.save!
   n += 1
 end
