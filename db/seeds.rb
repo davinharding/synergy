@@ -142,7 +142,7 @@ end
   ].sample
   )
   image = open(response.parsed_response['results'].last['picture']['large'])
-  profile.image = image
+  profile.image.attach(image)
   profile.save!
   n += 1
 end

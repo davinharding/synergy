@@ -84,7 +84,11 @@ class Profile extends React.Component {
                 <div className="profile-card" key={profile.id}>
                   <div className="photo">
                     <a className="name" href={`/profiles/${profile.id}`}>
-                      <img src={profile.image} width="300" height="300" />
+                      <img src={profile.image_url} width="300" height="300" />
+                      {/* 
+                      Profile.image is undefined because there is no image key for the profile object so no image is able to display. I need to create a mechanism that fetches an image url for each profile and is stored within the state.  It must fetch the url from Active Storage and the Rails DB. 
+                       */}
+                      {console.log(profile)}
                     </a>
                     <p className="profile-name">{`${profile.name}, ${profile.age}`}</p>
                   </div>

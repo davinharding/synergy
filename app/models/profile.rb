@@ -22,4 +22,8 @@ class Profile < ApplicationRecord
   def address
     [street, city, state, country].compact.join(', ')
   end
+
+  def image_url
+    return rails_blob_url(self.image) if self.image.attachment
+  end
 end

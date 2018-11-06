@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
         @profiles = @profiles.by_gender(params[:gender]) if params[:gender].present?
         @profiles = @profiles.by_activity(params[:activity])
 
-        render json: @profiles 
+        render json: @profiles, methods: :image_url 
         
         # .map{|profile| profile.attributes.merge(image: profile.image.url(:medium))}
       end
