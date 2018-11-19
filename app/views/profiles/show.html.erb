@@ -3,7 +3,7 @@
   <img class="card-img-top">
   <div class="card-body">
       <div class="show-image">
-        <%= image_tag(url_for(@profile.image)) %>
+        <%= image_tag(url_for(@profile.image), size: "240x240") %>
       </div>
       <li class="show-name"><%= @profile.name %>, <%= @profile.age %>
       <p class="city-state"> <%= @profile.city %>, <%= @profile.state %></p>

@@ -24,6 +24,6 @@ class Profile < ApplicationRecord
   end
 
   def image_url
-    return rails_blob_url(self.image) if self.image.attachment
+    app.rails_blob_url(self.image) if self.image.attached?
   end
 end
